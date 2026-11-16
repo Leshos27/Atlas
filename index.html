@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Атлас мира — интерактивная карта: страны, история, ресурсы, ветры и течения</title>
+<meta name="description" content="Интерактивная карта мира: площадь и население стран, государства прошлого с 4000 года до н. э., реки, озёра и города, месторождения ресурсов, ветры и океанские течения на карте и глобусе.">
+<link rel="canonical" href="https://example.ru/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="120x120">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#14263a">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Атлас мира">
+<meta property="og:title" content="Атлас мира — интерактивная карта">
+<meta property="og:description" content="Интерактивная карта мира: площадь и население стран, государства прошлого с 4000 года до н. э., реки, озёра и города, месторождения ресурсов, ветры и океанские течения на карте и глобусе.">
+<meta property="og:url" content="https://example.ru/">
+<meta property="og:image" content="https://example.ru/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Атлас мира","url":"https://example.ru/","inLanguage":"ru","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Интерактивная карта мира: площадь и население стран, государства прошлого с 4000 года до н. э., реки, озёра и города, месторождения ресурсов, ветры и океанские течения на карте и глобусе.","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"}}</script>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<noscript><p style="padding:16px;font:16px/1.5 sans-serif">Атлас мира — интерактивная карта: страны, история государств, реки и города, ресурсы, ветры и течения. Для работы карты включите JavaScript. <a href="about.html">Об атласе и источниках данных</a>.</p></noscript>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face { font-family: "Golos Text"; font-weight: 400; font-style: normal; font-display: swap; src: url(fonts/golos-text-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 400; font-style: normal; font-display: swap; src: url(fonts/golos-text-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Golos Text"; font-weight: 500; font-style: normal; font-display: swap; src: url(fonts/golos-text-cyrillic-500-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 500; font-style: normal; font-display: swap; src: url(fonts/golos-text-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-style: normal; font-display: swap; src: url(fonts/golos-text-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-style: normal; font-display: swap; src: url(fonts/golos-text-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Golos Text"; font-weight: 700; font-style: normal; font-display: swap; src: url(fonts/golos-text-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 700; font-style: normal; font-display: swap; src: url(fonts/golos-text-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Playfair Display"; font-weight: 600; font-style: normal; font-display: swap; src: url(fonts/playfair-display-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Playfair Display"; font-weight: 600; font-style: normal; font-display: swap; src: url(fonts/playfair-display-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; font-display: swap; src: url(fonts/playfair-display-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; font-display: swap; src: url(fonts/playfair-display-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Компоновка: карта на весь экран; поверх — плавающие панели: режимы сверху, содержание слева, шкала времени снизу. */
+:root {
+  --bg: #e6ecf1; --panel: rgba(249, 251, 253, .95); --ink: #14263a; --muted: #5a6b7c; --line: #cdd7e0;
+  --soft: #edf2f6; --accent: #d55a14; --accent-ink: #ffffff; --warm: #d3402e; --cold: #1f6fd0;
+  --shadow: 0 6px 24px rgba(20, 38, 58, .16);
+  --body: "Golos Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b131c; --panel: rgba(17, 27, 39, .94); --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d;
+    --soft: #1a2838; --accent: #f08a3c; --accent-ink: #1a1206; --warm: #ff7a66; --cold: #6fb1ff;
+    --shadow: 0 6px 24px rgba(0, 0, 0, .5); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b131c; --panel: rgba(17, 27, 39, .94); --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d;
+  --soft: #1a2838; --accent: #f08a3c; --accent-ink: #1a1206; --warm: #ff7a66; --cold: #6fb1ff;
+  --shadow: 0 6px 24px rgba(0, 0, 0, .5); color-scheme: dark;
+}
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.4; overflow: hidden; }
+* { box-sizing: border-box; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+#app { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+#ad-bar { flex: none; max-height: 120px; overflow: hidden; background: var(--bg); border-top: 1px solid var(--line); padding: 4px max(8px, env(safe-area-inset-right, 0px)) 4px max(8px, env(safe-area-inset-left, 0px)); }
+.ad-note { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cookie { position: absolute; z-index: 15; left: max(12px, env(safe-area-inset-left, 0px)); bottom: 12px; max-width: 420px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+.cookie a, .src a, .fb-legal a { color: var(--accent); }
+.fb-legal { font-size: 12px; color: var(--muted); margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; }
+.links a { color: var(--accent); font-weight: 600; }
+#map { position: absolute; inset: 0; }
+.maplibregl-map { overflow: hidden; position: relative; -webkit-tap-highlight-color: transparent; }
+.maplibregl-canvas { position: absolute; left: 0; top: 0; outline: none; }
+.maplibregl-canvas-container.maplibregl-interactive { cursor: grab; user-select: none; touch-action: none; }
+.maplibregl-canvas-container.maplibregl-interactive:active { cursor: grabbing; }
+.maplibregl-control-container { display: none; }
+.overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); backdrop-filter: blur(8px); }
+.topbar { position: absolute; top: 12px; left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+  display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; pointer-events: none; }
+.topbar > * { pointer-events: auto; }
+.modes { display: flex; align-items: center; gap: 4px; padding: 5px; min-width: 0; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.modes::-webkit-scrollbar { display: none; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 18px; padding: 0 10px 0 8px; white-space: nowrap; letter-spacing: .01em; }
+.tab { border: 0; background: transparent; padding: 7px 11px; border-radius: 7px; white-space: nowrap; font-weight: 500; color: var(--muted); }
+.tab:hover { background: var(--soft); color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.view { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.seg { display: flex; padding: 4px; gap: 2px; }
+.seg button { border: 0; background: transparent; padding: 6px 10px; border-radius: 6px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.seg button:hover { background: var(--soft); color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.zoom button { width: 32px; padding: 6px 0; font-size: 16px; line-height: 1.1; font-weight: 600; }
+
+.dock { display: contents; }
+.panel { position: absolute; right: max(12px, env(safe-area-inset-right, 0px)); top: var(--top, 66px); width: 330px; max-height: calc(100% - var(--top, 66px) - 12px);
+  display: flex; flex-direction: column; overflow: hidden; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px 8px 14px; border-bottom: 1px solid var(--line); }
+.panel-head { cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.panel.is-dragging .panel-head { cursor: grabbing; }
+.panel-head h1 { margin: 0; font-family: var(--display); font-size: 17px; font-weight: 700; text-wrap: balance; }
+.collapse { border: 1px solid var(--line); background: transparent; border-radius: 6px; width: 28px; height: 28px; flex: none; color: var(--muted); }
+.panel-body { padding: 12px 14px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+.panel.is-collapsed .panel-body { display: none; }
+.panel.is-collapsed .panel-head { border-bottom: 0; }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+.label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0; }
+.field { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--soft); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 0; font-variant-numeric: tabular-nums; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; text-align: right; }
+.info h2 { margin: 0 0 2px; font-size: 16px; font-weight: 700; }
+.facts.stack { grid-template-columns: 1fr; gap: 0; margin-top: 8px; }
+.facts.stack dt { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-top: 6px; }
+.facts.stack dd { text-align: left; font-weight: 500; }
+.info .about { margin: 8px 0 0; font-size: 13px; }
+.info .sub { color: var(--muted); font-size: 12.5px; margin: 0 0 8px; }
+.list { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.list button { display: flex; justify-content: space-between; gap: 10px; width: 100%; text-align: left; border: 0; background: transparent; padding: 5px 6px; border-radius: 6px; }
+.list button:hover { background: var(--soft); }
+.list .num { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.check { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.check input { accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+.dot { width: 12px; height: 12px; border-radius: 50%; flex: none; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, .25); }
+.group { display: flex; flex-direction: column; gap: 6px; }
+.war { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: transparent; border-radius: 8px; padding: 8px 10px; }
+.war:hover { background: var(--soft); }
+.war[aria-pressed="true"] { border-color: var(--accent); background: var(--soft); }
+.war b { display: block; font-weight: 600; }
+.war span { color: var(--muted); font-size: 12.5px; }
+.phase { display: block; width: 100%; text-align: left; border: 0; border-left: 3px solid var(--line); background: transparent; padding: 6px 8px 6px 10px; border-radius: 0 6px 6px 0; }
+.phase:hover { background: var(--soft); }
+.phase[aria-pressed="true"] { border-left-color: var(--accent); background: var(--soft); }
+.phase b { display: block; font-weight: 600; }
+.phase span { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; }
+.legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend i.dash { background: repeating-linear-gradient(90deg, var(--muted) 0 5px, transparent 5px 9px); }
+.ramp { height: 10px; border-radius: 5px; }
+.ramp-scale { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.back { border: 0; background: transparent; color: var(--accent); padding: 0; font-weight: 600; text-align: left; }
+details.src { font-size: 12px; color: var(--muted); }
+details.src summary { cursor: pointer; font-weight: 600; }
+details.src p { margin: 6px 0 0; }
+
+.timeline { position: absolute; left: max(12px, env(safe-area-inset-left, 0px)); right: 354px; bottom: 12px; padding: 10px 14px 8px;
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: center; }
+.tl-year { font-family: var(--display); font-size: 26px; font-weight: 700; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; min-width: 9.5ch; }
+.tl-meta { color: var(--muted); font-size: 12.5px; grid-column: 1 / -1; font-variant-numeric: tabular-nums; }
+.tl-ctrl { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.tl-ctrl button { border: 1px solid var(--line); background: transparent; border-radius: 7px; width: 32px; height: 32px; flex: none; font-size: 13px; }
+.tl-ctrl button:hover { background: var(--soft); }
+.tl-ctrl input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); height: 28px; }
+
+.tip { position: absolute; z-index: 5; pointer-events: none; padding: 9px 12px; max-width: 280px; min-width: 170px; font-size: 13px; }
+.tip h3 { margin: 0 0 1px; font-size: 14.5px; font-weight: 700; }
+.tip .sub { color: var(--muted); font-size: 12px; margin: 0 0 6px; }
+.tip .facts { gap: 2px 12px; }
+.fb-open { border: 0; background: transparent; padding: 6px 10px; border-radius: 6px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.fb-open:hover { background: var(--soft); color: var(--ink); }
+.modal { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; background: rgba(8, 16, 26, .45);
+  padding: 16px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+.modal-box { width: 100%; max-width: 460px; max-height: 100%; overflow-y: auto; padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
+.modal-box h2 { margin: 0; font-family: var(--display); font-size: 19px; }
+.modal-box textarea { min-height: 110px; resize: vertical; }
+.modal-box .ctx { font-size: 12.5px; color: var(--muted); margin: 0; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.btn { border: 1px solid var(--line); background: transparent; border-radius: 7px; padding: 8px 14px; font-weight: 600; }
+.btn:hover { background: var(--soft); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:disabled { opacity: .55; cursor: default; }
+.fb-status { margin: 0; font-size: 13px; }
+.loading { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 12px 18px; font-weight: 600; }
+
+@media (max-width: 760px) {
+  .topbar { top: 8px; left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); gap: 6px; }
+  .brand { font-size: 15px; padding: 0 4px; }
+  .tab { padding: 7px 9px; }
+  .view { justify-content: flex-start; gap: 6px; }
+  .seg button { padding: 6px 8px; }
+  .dock { position: absolute; left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: 8px;
+    display: flex; flex-direction: column; gap: 6px; pointer-events: none; max-height: 50%; }
+  .dock > * { pointer-events: auto; }
+  .panel { position: static; width: auto; max-height: none; min-height: 0; flex: 0 1 auto; order: 2; }
+  .panel-head { cursor: default; touch-action: auto; }
+  .timeline { position: static; order: 1; padding: 8px 10px 6px; gap: 2px 10px; }
+  .tl-year { font-size: 20px; min-width: 0; }
+  .tip { max-width: 230px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div id="app">
+  <div id="map" aria-label="Интерактивная карта мира"></div>
+  <canvas id="fx" class="overlay"></canvas>
+  <canvas id="lbl" class="overlay"></canvas>
+
+  <div class="topbar">
+    <div class="card modes" role="tablist" aria-label="Режим карты">
+      <span class="brand">Атлас мира</span>
+      <button class="tab" role="tab" data-mode="today" id="tab-today">Сегодня</button>
+      <button class="tab" role="tab" data-mode="history" id="tab-history">История</button>
+      <button class="tab" role="tab" data-mode="wars" id="tab-wars">Войны</button>
+      <button class="tab" role="tab" data-mode="resources" id="tab-resources">Ресурсы</button>
+      <button class="tab" role="tab" data-mode="fields" id="tab-fields">Ветры и течения</button>
+    </div>
+    <div class="view">
+      <div class="card seg" role="group" aria-label="Проекция">
+        <button data-proj="mercator" id="proj-flat">Плоская</button>
+        <button data-proj="globe" id="proj-globe">Глобус</button>
+      </div>
+      <div class="card seg" role="group" aria-label="Подложка">
+        <button data-base="relief" id="base-relief">Рельеф</button>
+        <button data-base="political" id="base-political">Политическая</button>
+        <button data-base="dark" id="base-dark">Контурная</button>
+      </div>
+      <div class="card seg" role="group" aria-label="Слои">
+        <button id="lay-water">Реки и озёра</button>
+        <button id="lay-cities">Города</button>
+      </div>
+      <div class="card seg"><button class="fb-open" id="fb-open">Сообщить о неточности</button></div>
+      <div class="card seg zoom" role="group" aria-label="Масштаб">
+        <button id="zoom-out" aria-label="Отдалить">−</button>
+        <button id="zoom-in" aria-label="Приблизить">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dock">
+    <section class="card panel" id="panel" aria-live="polite">
+      <div class="panel-head"><h1 id="panel-title" title="Перетащите за заголовок, чтобы передвинуть. Двойной щелчок возвращает на место.">Мир сегодня</h1><button class="collapse" id="collapse" aria-label="Свернуть панель" aria-expanded="true">–</button></div>
+      <div class="panel-body" id="panel-body"></div>
+    </section>
+    <div class="card timeline" id="timeline" hidden>
+      <div class="tl-year" id="tl-year"></div>
+      <div class="tl-ctrl">
+        <button id="tl-prev" aria-label="Предыдущая эпоха">◀</button>
+        <button id="tl-play" aria-label="Проиграть историю">▶</button>
+        <input type="range" id="tl-range" min="0" max="1" step="1" value="0" aria-label="Год">
+        <button id="tl-next" aria-label="Следующая эпоха">▶▶</button>
+      </div>
+      <div class="tl-meta" id="tl-meta"></div>
+    </div>
+  </div>
+
+  <div class="card tip" id="tip" hidden></div>
+  <div class="modal" id="fb" hidden>
+    <form class="card modal-box" id="fb-form" role="dialog" aria-modal="true" aria-labelledby="fb-title">
+      <h2 id="fb-title">Сообщить о неточности</h2>
+      <p class="ctx" id="fb-ctx"></p>
+      <label class="group"><span class="label">Что не так и как должно быть</span>
+        <textarea class="field" id="fb-text" maxlength="2000" required placeholder="Например: граница показана неверно, не тот год, ошибка в названии"></textarea></label>
+      <label class="group"><span class="label">Источник или ссылка (необязательно)</span>
+        <input class="field" id="fb-src" maxlength="300" autocomplete="off"></label>
+      <label class="group"><span class="label">Как с вами связаться (необязательно)</span>
+        <input class="field" id="fb-contact" maxlength="120" autocomplete="off"></label>
+      <p class="fb-legal">Отправляя сообщение, вы соглашаетесь с <a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>. Контакт указывать необязательно.</p>
+      <p class="fb-status" id="fb-status" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" id="fb-copy" hidden>Скопировать текст</button>
+        <button type="button" class="btn" id="fb-close">Закрыть</button>
+        <button type="submit" class="btn primary" id="fb-send">Отправить</button>
+      </div>
+    </form>
+  </div>
+  <div class="card cookie" id="cookie" hidden>
+    <span>Сайт использует файлы cookie и сервисы Яндекса для статистики и показа рекламы. Подробности — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</span>
+    <div class="modal-actions"><button class="btn" id="cookie-no">Только необходимые</button><button class="btn primary" id="cookie-yes">Принять</button></div>
+  </div>
+  <div class="card loading" id="loading">Загружаю карту…</div>
+</div>
+<div id="ad-bar" hidden><span class="ad-note">Реклама</span><div id="ad-slot"></div></div>
+
+<script src="config.js"></script>
+<script src="vendor/maplibre-gl.js"></script>
+<script>
+(() => {
+'use strict';
+const CFG = Object.assign({ feedbackUrl: '', feedbackEmail: '', metrikaId: '', adBlockId: '', showWars: false }, window.ATLAS_CONFIG || {});
+const $ = (s) => document.querySelector(s);
+const el = (tag, attrs = {}, html = '') => { const e = document.createElement(tag); for (const k in attrs) e.setAttribute(k, attrs[k]); e.innerHTML = html; return e; };
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const nf = (n, d = 0) => n.toLocaleString('ru-RU', { maximumFractionDigits: d, minimumFractionDigits: 0 });
+const fmtArea = (a) => a >= 1e6 ? nf(a / 1e6, 2) + ' млн км²' : a >= 1e4 ? nf(a / 1e3, 0) + ' тыс. км²' : nf(a) + ' км²';
+const fmtPop = (p) => p >= 1e9 ? nf(p / 1e9, 2) + ' млрд' : p >= 1e6 ? nf(p / 1e6, p >= 1e7 ? 1 : 2) + ' млн' : p >= 1e3 ? nf(p / 1e3, p >= 1e4 ? 0 : 1) + ' тыс.' : nf(p);
+const fmtMln = (m) => typeof m === 'string' ? m + ' млн' : m >= 1000 ? nf(m / 1000, 2) + ' млрд' : nf(m, m < 10 ? 1 : 0) + ' млн';
+const fmtYear = (y) => y < 0 ? nf(-y).replace(/\s/g, '') + ' г. до н. э.' : y + ' г.';
+const D2R = Math.PI / 180;
+
+const POL = ['#f2c9a1', '#b9d9a8', '#f3e2a0', '#c7c3e6', '#f0b7b7', '#a9d6d6', '#e3c4dd'];
+const HIST = ['#d1495b', '#edae49', '#00798c', '#6a994e', '#8367c7', '#e07a5f', '#3d5a80', '#bc6c25', '#2a9d8f'];
+const BASES = { relief: { ocean: '#a7c6e2', land: '#e9e4d6', line: '#3a4a5c', dark: false },
+  political: { ocean: '#bcd6e8', land: '#eeefe6', line: '#55606c', dark: false },
+  dark: { ocean: '#0a1826', land: '#1c2f42', line: '#5d7892', dark: true } };
+const WIND_RAMP = ['#3f79c4', '#49b6c4', '#8fd66b', '#f2e04a', '#f59a3a', '#ef4f6b'];
+const CUR_RAMP = ['#2f7fb5', '#39a9c9', '#7fe0d0', '#f3f0a0', '#f7b24a', '#ff6a4d'];
+
+const S = { mode: 'today', base: 'relief', proj: 'mercator', yi: 0, peoples: false, war: null, phase: -1,
+  res: new Set(['oil', 'gas']), field: 'wind', picked: null, prevBase: null, speed: 1, fieldLabels: true, waterUser: null, citiesUser: null };
+const showWater = () => S.waterUser != null ? S.waterUser : S.mode !== 'fields';
+const showCities = () => S.citiesUser != null ? S.citiesUser : (S.mode === 'today' || S.mode === 'resources');
+let riverLabels = [], zBucket = -1;
+let DATA = { water: null, cities: null, countries: null, years: [], content: null, hist: {}, wind: null, cur: null };
+let histFeatures = [], labels = [], playing = null, hoverRef = null;
+
+const map = new maplibregl.Map({
+  container: 'map', attributionControl: false, renderWorldCopies: false, dragRotate: false, pitchWithRotate: false,
+  center: [25, 28], zoom: 1.5, minZoom: 0.4, maxZoom: 8,
+  style: { version: 8, projection: { type: 'mercator' }, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': BASES.relief.ocean } }] },
+});
+map.touchZoomRotate.disableRotation();
+
+/* ---------- загрузка ---------- */
+const getJSON = (u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.json(); });
+const empty = { type: 'FeatureCollection', features: [] };
+
+Promise.all([getJSON('data/countries.json'), getJSON('data/years.json'), getJSON('data/content.json'),
+  getJSON('data/water.json'), getJSON('data/cities.json'), new Promise((ok) => map.once('load', ok))]).then(([c, y, content, water, cities]) => {
+  DATA.water = water; DATA.cities = cities;
+  DATA.countries = c; DATA.years = y.sort((a, b) => a.y - b.y); DATA.content = content;
+  S.yi = DATA.years.findIndex((q) => q.y === -3000);
+  setup(); $('#loading').hidden = true;
+}).catch((e) => { $('#loading').textContent = 'Не удалось загрузить данные карты. Откройте страницу через веб-сервер и обновите её.'; console.error(e); });
+
+function setup() {
+  const M = 85.0511287798;
+  [[0, 0], [0, 1], [1, 0], [1, 1]].forEach(([r, c]) => {
+    const w = -180 + c * 180, e = w + 180, n = r ? 0 : M, s = r ? -M : 0;
+    map.addSource('relief' + r + c, { type: 'image', url: new URL(`data/relief_${r}${c}.jpg`, document.baseURI).href, coordinates: [[w, n], [e, n], [e, s], [w, s]] });
+    map.addLayer({ id: 'relief' + r + c, type: 'raster', source: 'relief' + r + c, paint: { 'raster-fade-duration': 0 } });
+  });
+  map.addSource('ctry', { type: 'geojson', data: DATA.countries });
+  map.addSource('hist', { type: 'geojson', data: empty });
+  const rmz = (r) => r <= 2 ? 0 : r === 3 ? 1.8 : r === 4 ? 2.6 : r === 5 ? 3.4 : 4.2;
+  const byName = {};
+  DATA.water.features.forEach((f) => { const q = f.properties; if (q.k === 'r') { q.mz = rmz(q.r); if (q.n) { const len = f.geometry.type === 'LineString' ? f.geometry.coordinates.length : 0; if (!byName[q.n] || len > byName[q.n].len) byName[q.n] = { len, f }; } } });
+  riverLabels = Object.keys(byName).filter((n) => byName[n].len > 1 && !n.includes('(')).map((n) => { const f = byName[n].f, c = f.geometry.coordinates[Math.floor(byName[n].len / 2)]; return { x: c[0], y: c[1], t: n, mz: f.properties.mz }; });
+  DATA.cities.features.forEach((f) => { const q = f.properties; q.mz = q.cap ? (q.r <= 1 ? 1.8 : q.r <= 3 ? 2.6 : 3.3) : (q.r <= 1 ? 2.4 : q.r === 2 ? 3.2 : q.r === 3 ? 4 : q.r === 4 ? 4.8 : 5.5); });
+  map.addSource('water', { type: 'geojson', data: DATA.water });
+  map.addSource('cities', { type: 'geojson', data: DATA.cities });
+  map.addSource('war', { type: 'geojson', data: empty });
+  map.addSource('res', { type: 'geojson', data: resGeo() });
+  const hov = (on, off) => ['case', ['boolean', ['feature-state', 'hover'], false], on, off];
+  map.addLayer({ id: 'land', type: 'fill', source: 'ctry', paint: { 'fill-color': BASES.political.land, 'fill-antialias': false } });
+  map.addLayer({ id: 'ctry-fill', type: 'fill', source: 'ctry', paint: { 'fill-color': ['match', ['get', 'c'], 1, POL[0], 2, POL[1], 3, POL[2], 4, POL[3], 5, POL[4], 6, POL[5], POL[6]], 'fill-opacity': 0.9 } });
+  map.addLayer({ id: 'hist-people', type: 'fill', source: 'hist', filter: ['==', ['get', 's'], 0], paint: { 'fill-color': '#8a94a0', 'fill-opacity': hov(0.4, 0.2) } });
+  map.addLayer({ id: 'hist-fill', type: 'fill', source: 'hist', filter: ['==', ['get', 's'], 1],
+    paint: { 'fill-color': ['match', ['get', 'c'], 0, HIST[0], 1, HIST[1], 2, HIST[2], 3, HIST[3], 4, HIST[4], 5, HIST[5], 6, HIST[6], 7, HIST[7], HIST[8]], 'fill-opacity': hov(0.85, 0.6) } });
+  map.addLayer({ id: 'lake-fill', type: 'fill', source: 'water', filter: ['==', ['get', 'k'], 'l'], paint: { 'fill-color': BASES.political.ocean, 'fill-opacity': 0.01 } });
+  map.addLayer({ id: 'river', type: 'line', source: 'water', filter: ['==', ['get', 'k'], 'r'], layout: { 'line-cap': 'round', 'line-join': 'round' },
+    paint: { 'line-color': '#2f79bd', 'line-width': ['interpolate', ['linear'], ['zoom'], 1, ['match', ['get', 'r'], [1, 2], 1.1, 0.7], 6, ['match', ['get', 'r'], [1, 2], 3.2, 3, 2.5, [4, 5], 1.9, 1.4]] } });
+  map.addLayer({ id: 'ctry-line', type: 'line', source: 'ctry', paint: { 'line-color': '#3a4a5c', 'line-width': ['interpolate', ['linear'], ['zoom'], 1, 0.5, 6, 1.4], 'line-opacity': 0.8 } });
+  map.addLayer({ id: 'ctry-hover', type: 'line', source: 'ctry', paint: { 'line-color': '#d55a14', 'line-width': hov(2.5, 0) } });
+  map.addLayer({ id: 'hist-people-line', type: 'line', source: 'hist', filter: ['==', ['get', 's'], 0], paint: { 'line-color': '#6b7682', 'line-width': 0.8, 'line-dasharray': [2, 2] } });
+  map.addLayer({ id: 'hist-line', type: 'line', source: 'hist', filter: ['==', ['get', 's'], 1], paint: { 'line-color': '#ffffff', 'line-width': hov(2.6, 1), 'line-opacity': 0.95 } });
+  map.addLayer({ id: 'war-case', type: 'line', source: 'war', filter: ['==', ['get', 'k'], 'a'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 6.5, 'line-opacity': 0.85 } });
+  map.addLayer({ id: 'war-line', type: 'line', source: 'war', filter: ['all', ['==', ['get', 'k'], 'a'], ['!=', ['get', 'r'], 1]], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': ['get', 'c'], 'line-width': 3.6 } });
+  map.addLayer({ id: 'war-dash', type: 'line', source: 'war', filter: ['all', ['==', ['get', 'k'], 'a'], ['==', ['get', 'r'], 1]], paint: { 'line-color': ['get', 'c'], 'line-width': 3.2, 'line-dasharray': [1.6, 1.2] } });
+  map.addLayer({ id: 'war-head', type: 'symbol', source: 'war', filter: ['==', ['get', 'k'], 'h'],
+    layout: { 'icon-image': ['get', 'img'], 'icon-rotate': ['get', 'rot'], 'icon-rotation-alignment': 'map', 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.75, 6, 1.15] } });
+  map.addLayer({ id: 'war-battle', type: 'circle', source: 'war', filter: ['==', ['get', 'k'], 'b'],
+    paint: { 'circle-radius': hov(8, 5.5), 'circle-color': '#ffd23f', 'circle-stroke-color': '#1b1b1b', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'res', type: 'circle', source: 'res',
+    paint: { 'circle-color': ['get', 'c'], 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.6, 'circle-opacity': 0.92,
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, ['+', 2.5, ['*', 1.7, ['get', 'w']]], 6, ['+', 6, ['*', 3.5, ['get', 'w']]]] } });
+
+  map.moveLayer('war-head');
+  map.addLayer({ id: 'city', type: 'circle', source: 'cities', paint: { 'circle-radius': ['case', ['==', ['get', 'cap'], 1], 4.2, 2.8],
+    'circle-color': ['case', ['==', ['get', 'cap'], 1], '#ffffff', '#22303f'], 'circle-stroke-color': ['case', ['==', ['get', 'cap'], 1], '#b3261e', '#ffffff'],
+    'circle-stroke-width': ['case', ['==', ['get', 'cap'], 1], 2.2, 1.2] } });
+  map.on('zoom', zoomFilters);
+  bindUI(); if (innerWidth <= 760) $('#collapse').click();
+  apply();
+  map.on('move', () => { fxClear(); queueLabels(); });
+  map.on('render', queueLabels);
+  map.on('mousemove', (e) => hover(e.point, false));
+  map.on('click', (e) => hover(e.point, true));
+  map.getCanvas().addEventListener('mouseleave', () => { setHover(null); $('#tip').hidden = true; });
+  new ResizeObserver(() => { sizeCanvases(); map.resize(); queueLabels(); }).observe($('#app'));
+  sizeCanvases();
+  const tb = document.querySelector('.topbar');
+  const setTop = () => $('#app').style.setProperty('--top', (tb.offsetTop + tb.offsetHeight + 8) + 'px');
+  new ResizeObserver(setTop).observe(tb); setTop();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueLabels);
+  requestAnimationFrame(fxTick);
+}
+
+function zoomFilters(force) {
+  const z = map.getZoom(), b = Math.floor(z * 5);
+  if (b === zBucket && force !== true) return; zBucket = b;
+  map.setFilter('river', ['all', ['==', ['get', 'k'], 'r'], ['<=', ['get', 'mz'], z]]);
+  map.setFilter('city', ['<=', ['get', 'mz'], z]);
+}
+/* ---------- состояние -> карта ---------- */
+function show(id, on) { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); }
+function apply() {
+  const b = BASES[S.base], m = S.mode;
+  map.setPaintProperty('bg', 'background-color', b.ocean);
+  ['00', '01', '10', '11'].forEach((k) => show('relief' + k, S.base === 'relief'));
+  show('land', S.base !== 'relief');
+  map.setPaintProperty('land', 'fill-color', b.land);
+  const hist = m === 'history' || m === 'wars';
+  show('ctry-fill', m === 'today');
+  map.setPaintProperty('ctry-fill', 'fill-opacity', S.base === 'political' ? 0.92 : ['case', ['boolean', ['feature-state', 'hover'], false], 0.28, 0.01]);
+  if (S.base !== 'political') map.setPaintProperty('ctry-fill', 'fill-color', '#ffffff');
+  else map.setPaintProperty('ctry-fill', 'fill-color', ['match', ['get', 'c'], 1, POL[0], 2, POL[1], 3, POL[2], 4, POL[3], 5, POL[4], 6, POL[5], POL[6]]);
+  show('ctry-line', !hist); show('ctry-hover', m === 'today');
+  map.setPaintProperty('ctry-line', 'line-color', b.line);
+  map.setPaintProperty('ctry-line', 'line-opacity', m === 'fields' ? 0.45 : m === 'resources' ? 0.55 : 0.8);
+  show('hist-fill', hist); show('hist-line', hist);
+  show('hist-people', m === 'history' && S.peoples); show('hist-people-line', m === 'history' && S.peoples);
+  map.setPaintProperty('hist-fill', 'fill-opacity', m === 'wars' ? 0.38 : ['case', ['boolean', ['feature-state', 'hover'], false], 0.85, S.base === 'relief' ? 0.6 : 0.78]);
+  map.setPaintProperty('hist-line', 'line-color', b.dark ? '#0a1826' : '#ffffff');
+  ['war-case', 'war-line', 'war-dash', 'war-head', 'war-battle'].forEach((id) => show(id, m === 'wars'));
+  show('river', showWater()); show('lake-fill', showWater()); show('city', showCities()); zoomFilters(true);
+  map.setPaintProperty('lake-fill', 'fill-color', b.ocean); map.setPaintProperty('lake-fill', 'fill-opacity', S.base === 'relief' ? 0.01 : 1);
+  map.setPaintProperty('river', 'line-color', b.dark ? '#3f7fb5' : '#2f79bd');
+  $('#lay-water').setAttribute('aria-pressed', showWater()); $('#lay-cities').setAttribute('aria-pressed', showCities());
+  show('res', m === 'resources');
+  map.setFilter('res', ['in', ['get', 'id'], ['literal', [...S.res]]]);
+  $('#timeline').hidden = m !== 'history';
+  document.querySelectorAll('.tab').forEach((t) => t.setAttribute('aria-selected', t.dataset.mode === m));
+  document.querySelectorAll('[data-base]').forEach((t) => t.setAttribute('aria-pressed', t.dataset.base === S.base));
+  document.querySelectorAll('[data-proj]').forEach((t) => t.setAttribute('aria-pressed', t.dataset.proj === S.proj));
+  if (m === 'history') loadYear(DATA.years[S.yi].y);
+  else if (m === 'wars' && S.war) loadYear(S.war.hist);
+  if (m === 'wars') map.getSource('war').setData(warGeo());
+  if (m === 'fields') loadFields();
+  renderPanel(); buildLabels(); fxClear();
+}
+
+function setMode(m) {
+  if (m === S.mode) return;
+  stopPlay(); setHover(null); $('#tip').hidden = true;
+  if (m === 'fields' && S.mode !== 'fields') { S.prevBase = S.base; S.base = 'dark'; }
+  if (S.mode === 'fields' && S.prevBase) { S.base = S.prevBase; S.prevBase = null; }
+  S.mode = m; S.picked = null; apply();
+}
+
+function loadYear(y) {
+  const done = (d) => {
+    const want = S.mode === 'wars' ? S.war && S.war.hist : DATA.years[S.yi].y;
+    if (want !== y) return;
+    histFeatures = d.features; hoverRef = null;
+    map.getSource('hist').setData(d); renderTimeline(); if (S.mode === 'history') renderPanel(); buildLabels();
+  };
+  if (DATA.hist[y]) return done(DATA.hist[y]);
+  getJSON(`data/hist/${y}.json`).then((d) => { DATA.hist[y] = d; done(d); }).catch(console.error);
+}
+
+/* ---------- панель ---------- */
+const TITLES = { today: 'Мир сегодня', history: 'История государств', wars: 'Войны и походы', resources: 'Ресурсы и отрасли', fields: 'Ветры и течения' };
+const SOURCES = `<details class="src"><summary>Источники данных</summary>
+<p>Современные границы, население и рельеф — Natural Earth. Исторические границы — проект historical-basemaps (А. Урджедник, GPL-3.0); до Нового времени они приблизительны. Население древних государств — оценки историков-демографов (Макэведи и Джонс, HYDE), точность невысокая. Ветер — анализ модели GFS на 31 января 2014 года, течения — OSCAR на ту же дату (образцы проекта earth.nullschool.net). Стрелки ударов и месторождения нанесены схематично.</p></details>
+<div class="links"><a href="about.html" target="_blank" rel="noopener">Об атласе и источниках</a><a href="privacy.html" target="_blank" rel="noopener">Персональные данные</a></div>`;
+
+function renderPanel() {
+  const body = $('#panel-body'); body.innerHTML = '';
+  $('#panel-title').textContent = S.mode === 'wars' && S.war ? S.war.name : TITLES[S.mode];
+  ({ today: panelToday, history: panelHistory, wars: panelWars, resources: panelRes, fields: panelFields })[S.mode](body);
+  body.insertAdjacentHTML('beforeend', SOURCES);
+}
+
+function countryCard(p) {
+  const dens = p.pop && p.a ? p.pop / p.a : 0;
+  return `<div class="info"><h2>${esc(p.n)}</h2><p class="sub">${esc(p.cont || '')}${p.sov ? ' · владение: ' + esc(p.sov) : ''}</p>
+  <dl class="facts"><dt>Площадь</dt><dd>${fmtArea(p.a)}</dd><dt>Население${p.py ? ' (' + p.py + ')' : ''}</dt><dd>${p.pop ? fmtPop(p.pop) : '—'}</dd>
+  ${dens ? `<dt>Плотность</dt><dd>${nf(dens, dens < 10 ? 1 : 0)} чел./км²</dd>` : ''}${p.gdp ? `<dt>ВВП</dt><dd>${p.gdp >= 1e6 ? nf(p.gdp / 1e6, 2) + ' трлн $' : nf(p.gdp / 1e3, p.gdp < 1e4 ? 1 : 0) + ' млрд $'}</dd>` : ''}</dl></div>`;
+}
+function panelToday(body) {
+  const fs = DATA.countries.features;
+  body.append(el('p', { class: 'hint' }, 'Наведите курсор на страну или коснитесь её, чтобы увидеть площадь и население. Колесо мыши или жест двумя пальцами меняют масштаб.'));
+  const inp = el('input', { class: 'field', id: 'search', list: 'ctry-list', placeholder: 'Найти страну…', autocomplete: 'off', 'aria-label': 'Найти страну' });
+  const dl = el('datalist', { id: 'ctry-list' }, fs.map((f) => `<option value="${esc(f.properties.n)}">`).sort().join(''));
+  body.append(inp, dl);
+  inp.addEventListener('change', () => { const f = fs.find((q) => q.properties.n.toLowerCase() === inp.value.trim().toLowerCase()); if (f) { pick(f.properties); flyTo(f.properties.lx, f.properties.ly, f.properties.a); } });
+  const box = el('div', { id: 'picked' }); body.append(box);
+  const total = fs.reduce((a, f) => a + f.properties.pop, 0);
+  const top = [...fs].sort((a, b) => b.properties.pop - a.properties.pop).slice(0, 8);
+  box.innerHTML = S.picked ? countryCard(S.picked) : '';
+  body.append(el('p', { class: 'label' }, 'Крупнейшие по населению'));
+  const ul = el('ul', { class: 'list' });
+  top.forEach((f) => { const li = el('li'); const b = el('button', {}, `<span>${esc(f.properties.n)}</span><span class="num">${fmtPop(f.properties.pop)}</span>`);
+    b.onclick = () => { pick(f.properties); flyTo(f.properties.lx, f.properties.ly, f.properties.a); }; li.append(b); ul.append(li); });
+  body.append(ul, el('p', { class: 'hint' }, `Всего на карте ${fs.length} стран и территорий, ${fmtPop(total)} человек.`));
+}
+function pick(p) { S.picked = p; const box = $('#picked'); if (box) box.innerHTML = S.mode === 'today' ? countryCard(p) : histCard(p); }
+function flyTo(x, y, a) { if (x == null) return; const z = Math.max(2, Math.min(6.5, 7.2 - Math.log2(Math.sqrt(Math.max(a, 100)) / 100))); map.flyTo({ center: [x, y], zoom: z, duration: 1200 }); }
+
+function histCard(p, full = true) {
+  const y = S.mode === 'wars' ? S.war.hist : DATA.years[S.yi].y, st = DATA.content.states[p.en];
+  return `<div class="info"><h2>${esc(p.n)}</h2><p class="sub">${p.s ? 'Государство' : 'Народ или культура без государства'} · на карте ${fmtYear(y)}${p.n !== p.en ? ' · ' + esc(p.en) : ''}</p>
+  <dl class="facts"><dt>Площадь</dt><dd>≈ ${fmtArea(p.a)}</dd><dt>Население</dt><dd>${p.pop != null ? '≈ ' + fmtMln(p.pop) : 'нет оценки'}</dd>${st ? `<dt>Существовало</dt><dd>${esc(st[0])}</dd>` : ''}</dl>
+  ${st && full ? `<dl class="facts stack"><dt>Столица</dt><dd>${esc(st[1])}</dd><dt>Правители</dt><dd>${esc(st[2])}</dd></dl><p class="about">${esc(st[3])}</p>` : st ? '<p class="sub" style="margin:6px 0 0">Щёлкните, чтобы открыть справку в панели</p>' : ''}</div>`;
+}
+function panelHistory(body) {
+  const yr = DATA.years[S.yi];
+  body.append(el('p', { class: 'hint' }, 'Двигайте шкалу времени внизу. На карте остаются только государства, существовавшие в выбранную эпоху; остальная суша пустая.'));
+  const lab = el('label', { class: 'check' }, `<input type="checkbox" id="peoples" ${S.peoples ? 'checked' : ''}><span>Показывать народы и культуры без государства</span>`);
+  body.append(lab);
+  lab.querySelector('input').onchange = (e) => { S.peoples = e.target.checked; apply(); };
+  const box = el('div', { id: 'picked' }); box.innerHTML = S.picked ? histCard(S.picked) : ''; body.append(box);
+  const top = histFeatures.filter((f) => f.properties.s).sort((a, b) => b.properties.a - a.properties.a).slice(0, 8);
+  if (top.length) {
+    body.append(el('p', { class: 'label' }, `Крупнейшие государства · ${fmtYear(yr.y)}`));
+    const ul = el('ul', { class: 'list' });
+    top.forEach((f) => { const p = f.properties, li = el('li'); const b = el('button', {}, `<span>${esc(p.n)}</span><span class="num">${fmtArea(p.a)}</span>`);
+      b.onclick = () => { pick(p); flyTo(p.x, p.y, p.a); }; li.append(b); ul.append(li); });
+    body.append(ul);
+  }
+}
+function panelWars(body) {
+  const W = DATA.content.wars;
+  if (!S.war) {
+    body.append(el('p', { class: 'hint' }, 'Выберите войну: карта покажет границы той эпохи, направления ударов, отходы и места сражений.'));
+    const g = el('div', { class: 'group' });
+    W.forEach((w) => { const b = el('button', { class: 'war' }, `<b>${esc(w.name)}</b><span>${esc(w.years)}</span>`); b.onclick = () => selectWar(w); g.append(b); });
+    body.append(g); return;
+  }
+  const w = S.war;
+  const back = el('button', { class: 'back' }, '← Все войны'); back.onclick = () => { S.war = null; S.phase = -1; map.getSource('war').setData(empty); apply(); };
+  body.append(back, el('p', { class: 'hint' }, `<b>${esc(w.years)}.</b> ${esc(w.about)}`));
+  body.append(el('div', { class: 'legend' }, w.sides.map((s) => `<span><i style="background:${s.c}"></i>${esc(s.n)}</span>`).join('') + '<span><i class="dash"></i>отход</span><span><span class="dot" style="display:inline-block;background:#ffd23f;border-color:#1b1b1b;vertical-align:middle;margin-right:6px"></span>сражение</span>'));
+  body.append(el('p', { class: 'label' }, 'Этапы'));
+  const g = el('div', { class: 'group' });
+  const all = el('button', { class: 'phase', 'aria-pressed': S.phase === -1 }, '<b>Вся кампания</b>'); all.onclick = () => setPhase(-1); g.append(all);
+  w.phases.forEach((ph, i) => { const b = el('button', { class: 'phase', 'aria-pressed': S.phase === i }, `<b>${esc(ph.t)}</b>${S.phase === i ? `<span>${esc(ph.d)}</span>` : ''}`); b.onclick = () => setPhase(i); g.append(b); });
+  body.append(g);
+}
+function selectWar(w) { S.war = w; S.phase = -1; apply(); fitWar(); }
+function setPhase(i) { S.phase = i; map.getSource('war').setData(warGeo()); renderPanel(); buildLabels(); }
+function fitWar() {
+  const phone = innerWidth <= 760, h = $('#app').clientHeight;
+  map.fitBounds(S.war.view, { padding: phone ? { top: 110, bottom: Math.round(h * 0.45), left: 20, right: 20 } : { top: 120, bottom: 30, left: 30, right: 370 }, duration: 1300, maxZoom: 7 });
+}
+function panelRes(body) {
+  body.append(el('p', { class: 'hint' }, 'Отметьте, что показать. Размер кружка — значимость района для мировой добычи или производства; наведите на кружок, чтобы узнать название.'));
+  const groups = {};
+  DATA.content.resources.forEach((r) => (groups[r.g] = groups[r.g] || []).push(r));
+  for (const gname in groups) {
+    body.append(el('p', { class: 'label' }, gname));
+    const g = el('div', { class: 'group' });
+    groups[gname].forEach((r) => {
+      const lab = el('label', { class: 'check' }, `<input type="checkbox" id="res-${r.id}" ${S.res.has(r.id) ? 'checked' : ''}><span class="dot" style="background:${r.c}"></span><span>${esc(r.n)}</span>`);
+      lab.querySelector('input').onchange = (e) => { e.target.checked ? S.res.add(r.id) : S.res.delete(r.id); map.setFilter('res', ['in', ['get', 'id'], ['literal', [...S.res]]]); buildLabels(); };
+      g.append(lab);
+    });
+    body.append(g);
+  }
+}
+function panelFields(body) {
+  const wind = S.field === 'wind';
+  const seg = el('div', { class: 'seg', role: 'group', 'aria-label': 'Что показывать', style: 'border:1px solid var(--line);border-radius:8px;align-self:flex-start' },
+    `<button id="f-wind" aria-pressed="${wind}">Ветры</button><button id="f-cur" aria-pressed="${!wind}">Океанские течения</button>`);
+  body.append(seg);
+  seg.querySelector('#f-wind').onclick = () => { S.field = 'wind'; apply(); };
+  seg.querySelector('#f-cur').onclick = () => { S.field = 'cur'; apply(); };
+  body.append(el('p', { class: 'hint' }, wind
+    ? 'Каждая линия — путь воздуха у поверхности. Видны пояса пассатов у экватора, западный перенос в умеренных широтах и вихри циклонов. Переключитесь на глобус, чтобы увидеть картину целиком.'
+    : 'Поверхностные течения океана. Красным подписаны тёплые течения, синим — холодные. Хорошо заметны Гольфстрим, Куросио, экваториальные течения и кольцо Течения Западных Ветров вокруг Антарктиды.'));
+  const ramp = wind ? WIND_RAMP : CUR_RAMP;
+  body.append(el('div', {}, `<p class="label" style="margin-bottom:6px">Скорость, ${wind ? 'м/с' : 'м/с'}</p><div class="ramp" style="background:linear-gradient(90deg,${ramp.join(',')})"></div>
+  <div class="ramp-scale">${(wind ? [0, 4, 8, 12, 16, '20+'] : [0, 0.2, 0.4, 0.6, 0.8, '1+']).map((v) => `<span>${String(v).replace('.', ',')}</span>`).join('')}</div>`));
+  if (!wind) body.append(el('div', { class: 'legend' }, '<span><i style="background:var(--warm)"></i>тёплое течение</span><span><i style="background:var(--cold)"></i>холодное течение</span>'));
+  const sp = el('label', { class: 'group' }, `<span class="label">Скорость анимации</span><input type="range" id="f-speed" min="0.3" max="3" step="0.1" value="${S.speed}" style="accent-color:var(--accent);width:100%"><span class="ramp-scale"><span>медленнее</span><span>быстрее</span></span>`);
+  sp.querySelector('input').oninput = (e) => { S.speed = +e.target.value; };
+  const lb = el('label', { class: 'check' }, `<input type="checkbox" id="f-labels" ${S.fieldLabels ? 'checked' : ''}><span>Подписывать основные ${wind ? 'ветры' : 'течения'}</span>`);
+  lb.querySelector('input').onchange = (e) => { S.fieldLabels = e.target.checked; buildLabels(); };
+  const pb = el('button', { class: 'war', id: 'f-pause', 'aria-pressed': !!S.paused, style: 'text-align:center;font-weight:600' }, S.paused ? '▶ Запустить анимацию' : '❚❚ Остановить анимацию');
+  pb.onclick = () => { S.paused = !S.paused; pb.textContent = S.paused ? '▶ Запустить анимацию' : '❚❚ Остановить анимацию'; pb.setAttribute('aria-pressed', !!S.paused); };
+  body.append(pb, sp, lb);
+  body.append(el('p', { class: 'hint' }, 'Показан реальный снимок на 31 января 2014 года — зима Северного полушария, поэтому над Южной Азией дует зимний муссон.'));
+}
+
+/* ---------- шкала времени ---------- */
+function renderTimeline() {
+  const yr = DATA.years[S.yi]; if (!yr) return;
+  const r = $('#tl-range'); r.max = DATA.years.length - 1; r.value = S.yi; r.setAttribute('aria-valuetext', fmtYear(yr.y));
+  $('#tl-year').textContent = fmtYear(yr.y);
+  $('#tl-meta').textContent = `Население Земли ≈ ${fmtMln(yr.world)} · государств на карте: ${yr.states}`;
+}
+function setYear(i) { i = Math.max(0, Math.min(DATA.years.length - 1, i)); if (i === S.yi) return; S.yi = i; S.picked = null; setHover(null); renderTimeline(); loadYear(DATA.years[i].y); }
+function stopPlay() { if (playing) { clearInterval(playing); playing = null; $('#tl-play').textContent = '▶'; $('#tl-play').setAttribute('aria-label', 'Проиграть историю'); } }
+function bindUI() {
+  $('#tab-wars').hidden = !CFG.showWars;
+  document.querySelectorAll('.tab').forEach((t) => t.onclick = () => setMode(t.dataset.mode));
+  document.querySelectorAll('[data-base]').forEach((t) => t.onclick = () => { S.base = t.dataset.base; if (S.mode === 'fields') S.prevBase = null; apply(); });
+  document.querySelectorAll('[data-proj]').forEach((t) => t.onclick = () => { S.proj = t.dataset.proj; map.setProjection({ type: S.proj }); if (S.proj === 'globe' && map.getZoom() < 1.2) map.easeTo({ zoom: 1.6 }); apply(); [300, 900, 1600].forEach((t) => setTimeout(fxClear, t)); });
+  $('#lay-water').onclick = () => { S.waterUser = !showWater(); apply(); };
+  $('#lay-cities').onclick = () => { S.citiesUser = !showCities(); apply(); };
+  $('#zoom-in').onclick = () => map.zoomIn(); $('#zoom-out').onclick = () => map.zoomOut();
+  $('#collapse').onclick = () => { const c = $('#panel').classList.toggle('is-collapsed'); $('#collapse').textContent = c ? '+' : '–'; $('#collapse').setAttribute('aria-expanded', !c); };
+  const panel = $('#panel'), head = panel.querySelector('.panel-head');
+  let drag = null;
+  const place = (x, y) => {
+    const W = $('#app').clientWidth, H = $('#app').clientHeight;
+    x = Math.max(8, Math.min(W - panel.offsetWidth - 8, x)); y = Math.max(8, Math.min(H - 52, y));
+    panel.style.left = x + 'px'; panel.style.top = y + 'px'; panel.style.right = 'auto'; panel.style.maxHeight = (H - y - 12) + 'px';
+  };
+  head.addEventListener('pointerdown', (e) => {
+    if (innerWidth <= 760 || e.target.closest('button')) return;
+    drag = { dx: e.clientX - panel.offsetLeft, dy: e.clientY - panel.offsetTop }; head.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); e.preventDefault();
+  });
+  head.addEventListener('pointermove', (e) => { if (drag) place(e.clientX - drag.dx, e.clientY - drag.dy); });
+  const drop = () => { drag = null; panel.classList.remove('is-dragging'); };
+  head.addEventListener('pointerup', drop); head.addEventListener('pointercancel', drop);
+  head.addEventListener('dblclick', (e) => { if (!e.target.closest('button')) panel.removeAttribute('style'); });
+  addEventListener('resize', () => { if (innerWidth <= 760) panel.removeAttribute('style'); else if (panel.style.left) place(panel.offsetLeft, panel.offsetTop); });
+  let fbDb = null, fbUid = null, fbCtx = '';
+  (async () => { try { if (!window.claude || !window.claude.use) return; const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); fbDb = db; fbUid = user ? await user.id() : null; } catch (e) { /* без хранилища форма предлагает скопировать текст */ } })();
+  const fbText = () => `Неточность на карте «Атлас мира»\n${fbCtx}\n\n${$('#fb-text').value.trim()}${$('#fb-src').value.trim() ? '\nИсточник: ' + $('#fb-src').value.trim() : ''}${$('#fb-contact').value.trim() ? '\nКонтакт: ' + $('#fb-contact').value.trim() : ''}`;
+  const fbSay = (t) => { const st = $('#fb-status'); st.textContent = t; st.hidden = !t; };
+  $('#fb-open').onclick = () => {
+    const c = map.getCenter(), m = S.mode;
+    fbCtx = `Режим: ${TITLES[m]}` + (m === 'history' ? ', ' + fmtYear(DATA.years[S.yi].y) : '') + (m === 'wars' && S.war ? ', ' + S.war.name : '') + (m === 'fields' ? ', ' + (S.field === 'wind' ? 'ветры' : 'течения') : '')
+      + (S.picked ? '. Объект: ' + S.picked.n : '') + `. Центр карты: ${c.lat.toFixed(1)}°, ${c.lng.toFixed(1)}°`;
+    $('#fb-ctx').textContent = fbCtx + '. Эти сведения будут приложены к сообщению.';
+    fbSay(''); $('#fb-copy').hidden = true; $('#fb-send').disabled = false; $('#fb').hidden = false; $('#fb-text').focus();
+  };
+  $('#fb-close').onclick = () => { $('#fb').hidden = true; };
+  $('#fb').addEventListener('click', (e) => { if (e.target.id === 'fb') $('#fb').hidden = true; });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#fb').hidden = true; });
+  $('#fb-copy').onclick = () => { navigator.clipboard.writeText(fbText()).then(() => fbSay('Текст скопирован. Отправьте его автору карты.'), () => { fbSay('Не удалось скопировать автоматически. Выделите текст в поле выше и скопируйте вручную.'); $('#fb-text').select(); }); };
+  $('#fb-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = $('#fb-text').value.trim(); if (!text) return;
+    const mail = CFG.feedbackEmail ? ' на ' + CFG.feedbackEmail : ' автору карты';
+    const fallback = () => { fbSay('Отправить сообщение сейчас не получилось. Скопируйте текст и пришлите его' + mail + '.'); $('#fb-copy').hidden = false; $('#fb-send').disabled = false; };
+    const done = () => { fbSay('Сообщение отправлено. Автор карты его увидит и проверит.'); $('#fb-text').value = ''; $('#fb-src').value = ''; $('#fb-send').disabled = false; };
+    const item = { at: new Date().toISOString(), text, src: $('#fb-src').value.trim(), contact: $('#fb-contact').value.trim(), context: fbCtx, status: 'new' };
+    $('#fb-send').disabled = true; fbSay('Отправляю…');
+    try {
+      if (CFG.feedbackUrl) {
+        const r = await fetch(CFG.feedbackUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ message: item.text, source: item.src, contact: item.contact, context: item.context, page: location.href }) });
+        if (!r.ok) throw new Error('feedback ' + r.status);
+        return done();
+      }
+      if (!fbDb || !fbUid) return fallback();
+      const ref = fbDb.doc('feedback/' + fbUid), snap = await ref.get();
+      const items = snap.exists ? [...((snap.data() || {}).items || [])].slice(-99) : [];
+      items.push(item);
+      await ref.set({ items, updated: item.at });
+      done();
+    } catch (err) { fallback(); }
+  });
+  /* согласие на cookie, счётчик и реклама — включаются только если заданы в config.js */
+  const consent = () => { try { return localStorage.getItem('atlas-cookie'); } catch (e) { return null; } };
+  const startServices = () => {
+    if (CFG.metrikaId) {
+      window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); }; window.ym.l = Date.now();
+      const sc = document.createElement('script'); sc.async = true; sc.src = 'https://mc.yandex.ru/metrika/tag.js'; document.head.append(sc);
+      window.ym(Number(CFG.metrikaId), 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+    }
+    if (CFG.adBlockId) {
+      $('#ad-slot').id = 'yandex_rtb_' + CFG.adBlockId; $('#ad-bar').hidden = false;
+      window.yaContextCb = window.yaContextCb || [];
+      window.yaContextCb.push(() => window.Ya.Context.AdvManager.render({ blockId: CFG.adBlockId, renderTo: 'yandex_rtb_' + CFG.adBlockId }));
+      const sc = document.createElement('script'); sc.async = true; sc.src = 'https://yandex.ru/ads/system/context.js'; document.head.append(sc);
+    }
+  };
+  if (CFG.metrikaId || CFG.adBlockId) {
+    if (consent() === 'yes') startServices(); else if (consent() !== 'no') $('#cookie').hidden = false;
+    const answer = (v) => { try { localStorage.setItem('atlas-cookie', v); } catch (e) { /* выбор действует до закрытия страницы */ } $('#cookie').hidden = true; if (v === 'yes') startServices(); };
+    $('#cookie-yes').onclick = () => answer('yes'); $('#cookie-no').onclick = () => answer('no');
+  }
+  $('#tl-range').oninput = (e) => { stopPlay(); setYear(+e.target.value); };
+  $('#tl-prev').onclick = () => { stopPlay(); setYear(S.yi - 1); };
+  $('#tl-next').onclick = () => { stopPlay(); setYear(S.yi + 1); };
+  $('#tl-play').onclick = () => {
+    if (playing) return stopPlay();
+    if (S.yi >= DATA.years.length - 1) setYear(0);
+    $('#tl-play').textContent = '❚❚'; $('#tl-play').setAttribute('aria-label', 'Остановить');
+    playing = setInterval(() => { if (S.yi >= DATA.years.length - 1) return stopPlay(); setYear(S.yi + 1); }, 1500);
+  };
+}
+
+/* ---------- наведение ---------- */
+function setHover(ref) {
+  if (hoverRef && map.getSource(hoverRef.source)) map.setFeatureState(hoverRef, { hover: false });
+  hoverRef = ref; if (ref) map.setFeatureState(ref, { hover: true });
+}
+const HOVER_ORDER = ['city', 'war-battle', 'res', 'river', 'lake-fill'];
+function hover(pt, click) {
+  const m = S.mode, layers = m === 'today' ? ['ctry-fill'] : m === 'history' ? (S.peoples ? ['hist-fill', 'hist-people'] : ['hist-fill'])
+    : m === 'wars' ? ['war-battle', 'hist-fill'] : m === 'resources' ? ['res'] : [];
+  if (showCities()) layers.push('city'); if (showWater()) layers.push('river', 'lake-fill');
+  const tip = $('#tip');
+  if (!layers.length) { tip.hidden = true; return; }
+  const rank = (f) => { const i = HOVER_ORDER.indexOf(f.layer.id); return i < 0 ? 99 : i; };
+  const fs = map.queryRenderedFeatures([[pt.x - 5, pt.y - 5], [pt.x + 5, pt.y + 5]], { layers: layers.filter((l) => map.getLayer(l)) })
+    .filter((q) => q.source !== 'water' || q.properties.n).sort((x, y) => rank(x) - rank(y));
+  let f = fs[0];
+  if (f && rank(f) === 99) f = map.queryRenderedFeatures(pt, { layers: layers.filter((l) => map.getLayer(l) && HOVER_ORDER.indexOf(l) < 0) })[0];
+  if (!f) { setHover(null); tip.hidden = true; map.getCanvas().style.cursor = ''; return; }
+  map.getCanvas().style.cursor = 'pointer';
+  const p = f.properties;
+  if (f.id != null && (f.source === 'ctry' || f.source === 'hist')) { if (!hoverRef || hoverRef.id !== f.id || hoverRef.source !== f.source) setHover({ source: f.source, id: f.id }); } else setHover(null);
+  let html;
+  if (f.source === 'ctry') html = countryCard(p).replace('<h2>', '<h3>').replace('</h2>', '</h3>');
+  else if (f.source === 'hist') html = histCard(p, false).replace('<h2>', '<h3>').replace('</h2>', '</h3>');
+  else if (f.source === 'cities') html = `<h3>${esc(p.n)}</h3><p class="sub">${p.cap ? 'Столица' : 'Город'}${p.c ? ' · ' + esc(p.c) : ''}</p><dl class="facts"><dt>Население агломерации</dt><dd>${p.pop ? fmtPop(p.pop) : '—'}</dd></dl>`;
+  else if (f.source === 'water') html = p.k === 'r' ? `<h3>${esc(p.n)}</h3><p class="sub" style="margin:0">${/канал/i.test(p.n) ? 'Канал' : 'Река'}</p>`
+    : `<h3>${esc(p.n)}</h3><p class="sub">${/водохранилище/i.test(p.n) ? 'Водохранилище' : /море|залив/i.test(p.n) ? 'Водоём' : 'Озеро'}</p><dl class="facts"><dt>Площадь</dt><dd>≈ ${fmtArea(p.a)}</dd></dl>`;
+  else if (f.source === 'res') html = `<h3>${esc(p.rn)}</h3><p class="sub" style="margin:0">${esc(p.n)}</p>`;
+  else html = `<h3>${esc(p.n)}</h3><p class="sub" style="margin:0">${esc(p.d || 'место сражения')}</p>`;
+  tip.innerHTML = html; tip.hidden = false;
+  const W = $('#app').clientWidth, H = $('#app').clientHeight, tw = tip.offsetWidth, th = tip.offsetHeight;
+  let x = pt.x + 16, y = pt.y + 16;
+  if (x + tw > W - 8) x = pt.x - tw - 16; if (x < 8) x = 8;
+  if (y + th > H - 8) y = pt.y - th - 16; if (y < 8) y = 8;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  if (click && (f.source === 'ctry' || f.source === 'hist')) pick(p);
+}
+
+/* ---------- войны: стрелки ---------- */
+function smooth(pts) {
+  if (pts.length < 3) return pts;
+  const out = [], n = pts.length, P = (i) => pts[Math.max(0, Math.min(n - 1, i))];
+  for (let i = 0; i < n - 1; i++) {
+    const p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+    for (let k = 0; k < 10; k++) { const t = k / 10, t2 = t * t, t3 = t2 * t;
+      out.push([0, 1].map((d) => 0.5 * ((2 * p1[d]) + (-p0[d] + p2[d]) * t + (2 * p0[d] - 5 * p1[d] + 4 * p2[d] - p3[d]) * t2 + (-p0[d] + 3 * p1[d] - 3 * p2[d] + p3[d]) * t3))); }
+  }
+  out.push(pts[n - 1]); return out;
+}
+const mercY = (lat) => Math.log(Math.tan(Math.PI / 4 + lat * D2R / 2));
+function arrowImg(c) {
+  const id = 'ah-' + c; if (map.hasImage(id)) return id;
+  const s = 40, cv = document.createElement('canvas'); cv.width = cv.height = s; const x = cv.getContext('2d');
+  x.beginPath(); x.moveTo(s / 2, 3); x.lineTo(s - 6, s - 8); x.lineTo(s / 2, s - 15); x.lineTo(6, s - 8); x.closePath();
+  x.fillStyle = c; x.strokeStyle = '#fff'; x.lineWidth = 3; x.lineJoin = 'round'; x.stroke(); x.fill();
+  map.addImage(id, x.getImageData(0, 0, s, s), { pixelRatio: 2 }); return id;
+}
+function warPhases() { const w = S.war; return !w ? [] : S.phase === -1 ? w.phases : [w.phases[S.phase]]; }
+function warGeo() {
+  const w = S.war, fs = []; if (!w) return empty; let id = 1;
+  warPhases().forEach((ph) => {
+    ph.a.forEach((a) => {
+      const c = w.sides[a.s].c, line = smooth(a.p), n = line.length, p1 = line[n - 4] || line[0], p2 = line[n - 1];
+      const rot = Math.atan2((p2[0] - p1[0]) * D2R, mercY(p2[1]) - mercY(p1[1])) / D2R;
+      fs.push({ type: 'Feature', properties: { k: 'a', c, r: a.r || 0 }, geometry: { type: 'LineString', coordinates: line } });
+      fs.push({ type: 'Feature', properties: { k: 'h', img: arrowImg(c), rot }, geometry: { type: 'Point', coordinates: p2 } });
+    });
+    ph.b.forEach((b) => fs.push({ type: 'Feature', id: id++, properties: { k: 'b', n: b[2], d: b[3] }, geometry: { type: 'Point', coordinates: [b[0], b[1]] } }));
+  });
+  return { type: 'FeatureCollection', features: fs };
+}
+function resGeo() {
+  const fs = [];
+  DATA.content.resources.forEach((r) => r.s.forEach((s) => fs.push({ type: 'Feature', properties: { id: r.id, rn: r.n, c: r.c, n: s[2], w: s[3] }, geometry: { type: 'Point', coordinates: [s[0], s[1]] } })));
+  fs.sort((a, b) => b.properties.w - a.properties.w);
+  return { type: 'FeatureCollection', features: fs };
+}
+
+/* ---------- подписи на холсте ---------- */
+const lblCv = $('#lbl'), lblCtx = lblCv.getContext('2d'), fxCv = $('#fx'), fxCtx = fxCv.getContext('2d');
+let DPR = 1, VW = 0, VH = 0, lblQueued = false;
+function sizeCanvases() {
+  VW = $('#app').clientWidth; VH = $('#app').clientHeight; DPR = Math.min(2, window.devicePixelRatio || 1);
+  lblCv.width = VW * DPR; lblCv.height = VH * DPR; fxCv.width = VW; fxCv.height = VH; particles = [];
+}
+function visible(lon, lat) { return S.proj !== 'globe' || !map.transform.isLocationOccluded(new maplibregl.LngLat(lon, lat)); }
+function buildLabels() {
+  const L = [], m = S.mode, dark = BASES[S.base].dark;
+  const ink = dark ? '#e7eef5' : '#14263a', halo = dark ? 'rgba(10,24,38,.9)' : 'rgba(255,255,255,.92)';
+  if (m === 'today' || m === 'resources') DATA.countries.features.forEach((f) => { const p = f.properties; if (p.lx != null) L.push({ x: p.lx, y: p.ly, t: p.n, a: p.a, pr: p.a, ink: m === 'resources' ? (dark ? '#9fb2c6' : '#55606c') : ink, halo, w: m === 'resources' ? 500 : 600, minPx: m === 'resources' ? 60 : 34 }); });
+  if (m === 'history' || m === 'wars') histFeatures.forEach((f) => { const p = f.properties;
+    if (p.s) L.push({ x: p.x, y: p.y, t: p.n, a: p.a, pr: p.a, ink: m === 'wars' ? (dark ? '#9fb2c6' : '#4a5665') : ink, halo, w: m === 'wars' ? 500 : 600, minPx: m === 'wars' ? 60 : 30 });
+    else if (m === 'history' && S.peoples) L.push({ x: p.x, y: p.y, t: p.n, a: p.a, pr: p.a / 50, ink: dark ? '#9fb2c6' : '#4a5665', halo, w: 400, it: 1, minPx: 70 }); });
+  if (m === 'wars' && S.war) warPhases().forEach((ph) => {
+    ph.b.forEach((b) => L.push({ x: b[0], y: b[1], t: b[2], pr: 1e12, ink, halo, w: 700, dy: -13, size: 12.5, max: 22 }));
+    ph.a.forEach((a) => { if (a.t) { const s = smooth(a.p), q = s[Math.floor(s.length * 0.45)]; L.push({ x: q[0], y: q[1], t: a.t, pr: 1e11, ink: S.war.sides[a.s].c, halo: 'rgba(255,255,255,.95)', w: 600, it: 1, dy: -11, size: 12 }); } });
+  });
+  if (m === 'resources') DATA.content.resources.forEach((r) => { if (S.res.has(r.id)) r.s.forEach((s) => L.push({ x: s[0], y: s[1], t: s[2].split(/ — |: /)[0].split(',')[0], pr: 1e10 * s[3], ink, halo, w: 600, dy: 15, size: 11.5, minZ: 4.6 - s[3] * 0.8 })); });
+  if (m === 'fields' && S.fieldLabels) {
+    if (S.field === 'cur') DATA.content.currents.forEach((c) => L.push({ x: c[0], y: c[1], t: c[2], pr: 1e9, ink: c[3] === 'w' ? '#ffa08c' : '#93c8ff', pill: 1, w: 700, size: 13, max: 18, minZ: c[4] || 0 }));
+    else DATA.content.winds.forEach((c) => L.push({ x: c[0], y: c[1], t: c[2], pr: 1e9, ink: '#ffffff', pill: 1, w: 700, size: 13, max: 18, minZ: c[3] || 0 }));
+  }
+  const wInk = dark ? '#8fc4f0' : '#1b5a96';
+  if (showCities()) DATA.cities.features.forEach((f) => { const q = f.properties, c = f.geometry.coordinates; L.push({ x: c[0], y: c[1], t: q.n, pr: 5e9 + q.pop + (q.cap ? 3e7 : 0), ink, halo, w: q.cap ? 700 : 500, dy: -11, size: q.cap ? 12 : 11.5, minZ: q.mz, max: 20 }); });
+  if (showWater()) {
+    riverLabels.forEach((r) => L.push({ x: r.x, y: r.y, t: r.t, pr: 4e9 - r.mz * 1e8, ink: wInk, halo, w: 500, it: 1, size: 11.5, minZ: r.mz + 0.7, max: 20 }));
+    DATA.water.features.forEach((f) => { const q = f.properties; if (q.k === 'l' && q.n && q.a > 2500) L.push({ x: q.x, y: q.y, t: q.n, a: q.a * 6, pr: 3e9 + q.a, ink: wInk, halo, w: 500, it: 1, minPx: 34, fix: 11.5 }); });
+  }
+  L.sort((a, b) => b.pr - a.pr); labels = L; queueLabels();
+}
+function queueLabels() { if (lblQueued) return; lblQueued = true; requestAnimationFrame(() => { lblQueued = false; drawLabels(); }); }
+function wrap(t, max = 15) { if (t.length <= max) return [t]; const mid = t.length / 2; let best = -1; for (let i = 0; i < t.length; i++) if (t[i] === ' ' && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i; return best < 0 ? [t] : [t.slice(0, best), t.slice(best + 1)]; }
+function drawLabels() {
+  const c = lblCtx; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, VW, VH);
+  if (!labels.length) return;
+  const z = map.getZoom(), boxes = [], pxKm = 512 * Math.pow(2, z) / 40075;
+  c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineJoin = 'round';
+  let drawn = 0;
+  for (const l of labels) {
+    if (drawn > 230) break;
+    if (l.minZ && z < l.minZ) continue;
+    let size = l.size || 11.5;
+    if (l.a != null) { const px = Math.sqrt(l.a) * pxKm / Math.cos(Math.min(70, Math.abs(l.y)) * D2R); if (px < l.minPx) continue; size = l.fix || (px > 260 ? 15 : px > 120 ? 13 : 11.5); }
+    if (!visible(l.x, l.y)) continue;
+    const p = map.project([l.x, l.y]); const y0 = p.y + (l.dy || 0);
+    if (p.x < -40 || p.x > VW + 40 || y0 < -20 || y0 > VH + 20) continue;
+    const lines = wrap(l.t, l.max || 15);
+    c.font = `${l.it ? 'italic ' : ''}${l.w} ${size}px "Golos Text", "Segoe UI", system-ui, sans-serif`;
+    const w = Math.max(...lines.map((s) => c.measureText(s).width)) + 6, h = lines.length * (size + 2) + 4;
+    const b = [p.x - w / 2, y0 - h / 2, p.x + w / 2, y0 + h / 2];
+    if (boxes.some((q) => b[0] < q[2] && b[2] > q[0] && b[1] < q[3] && b[3] > q[1])) continue;
+    boxes.push(b); drawn++;
+    if (l.pill) { c.fillStyle = 'rgba(6,16,28,.8)'; c.beginPath(); c.roundRect(b[0] - 4, b[1] - 1, w + 8, h + 2, 6); c.fill(); c.fillStyle = l.ink;
+      lines.forEach((s, i) => c.fillText(s, p.x, y0 + (i - (lines.length - 1) / 2) * (size + 2))); continue; }
+    c.lineWidth = 3.2; c.strokeStyle = l.halo; c.fillStyle = l.ink;
+    lines.forEach((s, i) => { const yy = y0 + (i - (lines.length - 1) / 2) * (size + 2); c.strokeText(s, p.x, yy); c.fillText(s, p.x, yy); });
+  }
+}
+
+/* ---------- ветры и течения: частицы ---------- */
+let particles = [], fxFrames = 0;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function loadFields() {
+  if (!DATA.wind) getJSON('data/wind.json').then((b) => { DATA.wind = { nx: 360, ny: 181, top: 90, d: 1, u: Int8Array.from(b.u), v: Int8Array.from(b.v), k: 0.4, max: 20, c: 0.06 }; }).catch(console.error);
+  if (!DATA.cur) getJSON('data/currents.json').then((b) => { DATA.cur = { nx: 540, ny: 241, top: 80, d: 2 / 3, u: Int8Array.from(b.u), v: Int8Array.from(b.v), k: 0.02, max: 1, c: 1.4 }; }).catch(console.error);
+  fxFrames = 0;
+}
+function sample(F, lon, lat, out) {
+  const fy = (F.top - lat) / F.d; if (fy < 0 || fy > F.ny - 1) return false;
+  let fx = (((lon % 360) + 360) % 360) / F.d; const x0 = Math.floor(fx) % F.nx, y0 = Math.floor(fy), x1 = (x0 + 1) % F.nx, y1 = Math.min(F.ny - 1, y0 + 1);
+  const tx = fx - Math.floor(fx), ty = fy - y0, i00 = y0 * F.nx + x0, i10 = y0 * F.nx + x1, i01 = y1 * F.nx + x0, i11 = y1 * F.nx + x1;
+  if (F.u[i00] === -128 || F.u[i10] === -128 || F.u[i01] === -128 || F.u[i11] === -128) return false;
+  out[0] = ((F.u[i00] * (1 - tx) + F.u[i10] * tx) * (1 - ty) + (F.u[i01] * (1 - tx) + F.u[i11] * tx) * ty) * F.k;
+  out[1] = ((F.v[i00] * (1 - tx) + F.v[i10] * tx) * (1 - ty) + (F.v[i01] * (1 - tx) + F.v[i11] * tx) * ty) * F.k;
+  return true;
+}
+function spawn(p) {
+  if (S.proj === 'globe') {
+    const c = map.getCenter(), r = Math.min(88, 230 / Math.pow(2, map.getZoom())) * D2R;
+    const d = Math.acos(1 - Math.random() * (1 - Math.cos(r))), th = Math.random() * 2 * Math.PI, la = c.lat * D2R, lo = c.lng * D2R;
+    const la2 = Math.asin(Math.sin(la) * Math.cos(d) + Math.cos(la) * Math.sin(d) * Math.cos(th));
+    p.x = (lo + Math.atan2(Math.sin(th) * Math.sin(d) * Math.cos(la), Math.cos(d) - Math.sin(la) * Math.sin(la2))) / D2R; p.y = la2 / D2R;
+  } else {
+    const b = map.getBounds(), w = Math.max(-180, b.getWest()), e = Math.min(180, b.getEast()), s = Math.max(-84, b.getSouth()), n = Math.min(84, b.getNorth());
+    p.x = w + Math.random() * (e - w); p.y = s + Math.random() * (n - s);
+  }
+  p.age = Math.floor(Math.random() * 80); p.sx = NaN; p.sy = NaN;
+}
+function fxClear() { fxCtx.clearRect(0, 0, VW, VH); for (const p of particles) { p.sx = NaN; } fxFrames = 0; }
+const uv = [0, 0];
+function fxTick() {
+  requestAnimationFrame(fxTick);
+  const F = S.mode === 'fields' ? (S.field === 'wind' ? DATA.wind : DATA.cur) : null;
+  if (!F) { if (particles.length) { particles = []; fxCtx.clearRect(0, 0, VW, VH); } return; }
+  if (S.paused) return;
+  fxFrames++;
+  const want = Math.min(5200, Math.round(VW * VH / 230));
+  while (particles.length < want) { const p = {}; spawn(p); particles.push(p); }
+  particles.length = want;
+  const c = fxCtx, ramp = S.field === 'wind' ? WIND_RAMP : CUR_RAMP, z = map.getZoom(), step = F.c * S.speed / (512 * Math.pow(2, z) / 360);
+  c.globalCompositeOperation = 'destination-out'; c.fillStyle = 'rgba(0,0,0,0.04)'; c.fillRect(0, 0, VW, VH);
+  c.globalCompositeOperation = 'source-over'; c.lineWidth = 1.25; c.lineCap = 'round';
+  const paths = ramp.map(() => []);
+  for (const p of particles) {
+    if (p.age++ > 170 || !sample(F, p.x, p.y, uv)) { spawn(p); continue; }
+    const sp = Math.hypot(uv[0], uv[1]);
+    p.x += uv[0] * step / Math.max(0.2, Math.cos(p.y * D2R)); p.y += uv[1] * step;
+    if (p.x > 180) p.x -= 360; else if (p.x < -180) p.x += 360;
+    if (p.y > 86 || p.y < -86 || !visible(p.x, p.y)) { spawn(p); continue; }
+    const q = map.project([p.x, p.y]);
+    if (q.x < -20 || q.x > VW + 20 || q.y < -20 || q.y > VH + 20) { spawn(p); continue; }
+    if (!isNaN(p.sx) && Math.abs(q.x - p.sx) < 40 && Math.abs(q.y - p.sy) < 40) paths[Math.min(ramp.length - 1, Math.floor(sp / F.max * (ramp.length - 1) + 0.5))].push(p.sx, p.sy, q.x, q.y);
+    p.sx = q.x; p.sy = q.y;
+  }
+  paths.forEach((a, i) => { if (!a.length) return; c.strokeStyle = ramp[i]; c.beginPath(); for (let k = 0; k < a.length; k += 4) { c.moveTo(a[k], a[k + 1]); c.lineTo(a[k + 2], a[k + 3]); } c.stroke(); });
+}
+window.__atlas = { map, S, setMode, setYear, selectWar: (id) => selectWar(DATA.content.wars.find((w) => w.id === id)), apply };
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<title>Об атласе и источниках данных — Атлас мира</title>
+<meta name="description" content="Откуда взяты границы, рельеф, реки, города, ветры и течения на карте «Атлас мира», на каких условиях они используются и насколько точны.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url(fonts/golos-text-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url(fonts/golos-text-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url(fonts/golos-text-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url(fonts/golos-text-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-display: swap; src: url(fonts/playfair-display-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-display: swap; src: url(fonts/playfair-display-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+:root { --bg: #f4f7f9; --ink: #14263a; --muted: #5a6b7c; --line: #cdd7e0; --accent: #c2500f; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b131c; --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d; --accent: #f08a3c; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #0b131c; --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d; --accent: #f08a3c; color-scheme: dark; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 "Golos Text", "Segoe UI", system-ui, sans-serif; }
+main { max-width: 68ch; margin: 0 auto; padding-block: 32px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font: 700 30px/1.2 "Playfair Display", Georgia, serif; margin: 12px 0 8px; text-wrap: balance; }
+h2 { font-size: 19px; margin: 32px 0 8px; text-wrap: balance; }
+p, li { margin: 0 0 10px; } ul { padding-left: 22px; margin: 0 0 10px; }
+a { color: var(--accent); } .back { font-weight: 600; text-decoration: none; }
+.meta { color: var(--muted); font-size: 14px; } .fill { background: color-mix(in srgb, var(--accent) 18%, transparent); padding: 0 4px; border-radius: 3px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; } th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
+.wide { overflow-x: auto; }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./">← К карте</a>
+<h1>Об атласе и источниках данных</h1>
+<p>«Атлас мира» — интерактивная карта для учёбы и общего кругозора. На ней можно посмотреть современные страны с площадью и населением, государства прошлого начиная с 4000 года до н. э., реки, озёра и города, районы добычи важнейших ресурсов, ветры и океанские течения — на плоской карте или на глобусе.</p>
+
+<h2>Насколько точны данные</h2>
+<ul>
+<li><b>Современные границы</b> показаны в соответствии с законодательством Российской Федерации.</li>
+<li><b>Исторические границы</b> приблизительны: чем древнее эпоха, тем условнее линия. Карта показывает 47 срезов времени, между ними границы не интерполируются.</li>
+<li><b>Население древних государств</b> — оценки историков-демографов. Разные авторы расходятся в разы, поэтому цифры даны со знаком «≈».</li>
+<li><b>Районы добычи ресурсов</b> нанесены схематично: кружок обозначает район, а не точные границы месторождения.</li>
+<li><b>Ветры и течения</b> — снимок одного дня, 31 января 2014 года, а не средняя картина за год.</li>
+<li><b>Население городов</b> указано для агломераций и может отличаться от официальной численности в городской черте.</li>
+</ul>
+<p>Нашли ошибку — нажмите на карте кнопку «Сообщить о неточности». Сообщения проверяются по источникам, после чего карта исправляется.</p>
+
+<h2>Источники и лицензии</h2>
+<div class="wide"><table>
+<tr><th>Что</th><th>Источник</th><th>Условия</th></tr>
+<tr><td>Современные границы, население стран, реки, озёра, города, рельеф</td><td><a href="https://www.naturalearthdata.com/" rel="noopener">Natural Earth</a></td><td>Общественное достояние</td></tr>
+<tr><td>Исторические границы</td><td><a href="https://github.com/aourednik/historical-basemaps" rel="noopener">historical-basemaps</a>, А. Урджедник</td><td>GPL-3.0</td></tr>
+<tr><td>Население стран в 1960–2010 годах</td><td>Всемирный банк, <a href="https://github.com/datasets/population" rel="noopener">набор population</a></td><td>CC BY 4.0</td></tr>
+<tr><td>Ветер у поверхности</td><td>Модель GFS, NOAA/NCEP; образец проекта <a href="https://github.com/cambecc/earth" rel="noopener">earth</a></td><td>Открытые данные</td></tr>
+<tr><td>Океанские течения</td><td>OSCAR, Earth &amp; Space Research; образец проекта earth</td><td>Открытые данные</td></tr>
+<tr><td>Движок карты</td><td><a href="https://maplibre.org/" rel="noopener">MapLibre GL JS</a></td><td>BSD-3-Clause</td></tr>
+<tr><td>Шрифты</td><td>Golos Text, Playfair Display</td><td>SIL Open Font License</td></tr>
+</table></div>
+<p>Исторические границы на сайте — переработанная версия набора historical-basemaps: упрощены контуры, объединены части одного государства, добавлены русские названия, площади и оценки населения. В соответствии с лицензией GPL-3.0 переработанные файлы доступны всем на тех же условиях в папке data/hist этого сайта (например, <a href="data/hist/1914.json">data/hist/1914.json</a>; формат GeoJSON).</p>
+<p>Русские названия исторических государств и рек, справки о государствах, оценки населения древних держав, подписи ветров и течений и перечень районов добычи составлены авторами сайта.</p>
+
+<h2>Связь</h2>
+<p>Вопросы и предложения: <span class="fill">[адрес почты]</span>. О том, какие данные собирает сайт, — в <a href="privacy.html">политике обработки персональных данных</a>.</p>
+</main>
+</body>
+</html>
