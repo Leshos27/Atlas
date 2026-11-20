@@ -24,7 +24,7 @@
 <style>body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
-<noscript><p style="padding:16px;font:16px/1.5 sans-serif">Атлас мира — интерактивная карта: страны, история государств, реки и города, ресурсы, ветры и течения. Для работы карты включите JavaScript. <a href="about.html">Об атласе и источниках данных</a>.</p></noscript>
+<noscript><p style="padding:16px;font:16px/1.5 sans-serif">Атлас мира — интерактивная карта: страны, история государств, реки и города, ресурсы, ветры и течения. Для работы карты включите JavaScript. Разделы: <a href="strany/">страны мира</a>, <a href="istoriya/">история государств</a>, <a href="resursy/">ресурсы</a>, <a href="vetry-i-techeniya/">ветры и течения</a>, <a href="about.html">об атласе и источниках данных</a>.</p></noscript>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 @font-face { font-family: "Golos Text"; font-weight: 400; font-style: normal; font-display: swap; src: url(fonts/golos-text-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
@@ -74,6 +74,8 @@ button { cursor: pointer; }
 .fb-legal { font-size: 12px; color: var(--muted); margin: 0; }
 .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; }
 .links a { color: var(--accent); font-weight: 600; }
+.links.sections a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.more { margin: 8px 0 0; font-size: 13px; } .more a { color: var(--accent); font-weight: 600; }
 #map { position: absolute; inset: 0; }
 .maplibregl-map { overflow: hidden; position: relative; -webkit-tap-highlight-color: transparent; }
 .maplibregl-canvas { position: absolute; left: 0; top: 0; outline: none; }
@@ -261,6 +263,7 @@ details.src p { margin: 6px 0 0; }
         <input class="field" id="fb-src" maxlength="300" autocomplete="off"></label>
       <label class="group"><span class="label">Как с вами связаться (необязательно)</span>
         <input class="field" id="fb-contact" maxlength="120" autocomplete="off"></label>
+      <input id="fb-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <p class="fb-legal">Отправляя сообщение, вы соглашаетесь с <a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>. Контакт указывать необязательно.</p>
       <p class="fb-status" id="fb-status" hidden></p>
       <div class="modal-actions">
@@ -327,7 +330,25 @@ Promise.all([getJSON('data/countries.json'), getJSON('data/years.json'), getJSON
   DATA.countries = c; DATA.years = y.sort((a, b) => a.y - b.y); DATA.content = content;
   S.yi = DATA.years.findIndex((q) => q.y === -3000);
   setup(); $('#loading').hidden = true;
+  getJSON('data/pages.json').then((pg) => { DATA.pages = pg; if (S.picked) pick(S.picked); }).catch(() => {});
+  openFromUrl();
 }).catch((e) => { $('#loading').textContent = 'Не удалось загрузить данные карты. Откройте страницу через веб-сервер и обновите её.'; console.error(e); });
+
+/* ---------- ссылки на нужный вид карты: ?mode=history&year=100&state=Roman%20Empire ---------- */
+let pendingState = null;
+function openFromUrl() {
+  let q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
+  const mode = q.get('mode');
+  if (q.get('res')) S.res = new Set(q.get('res').split(','));
+  if (q.get('field') === 'cur' || q.get('field') === 'wind') S.field = q.get('field');
+  if (q.has('year')) { const y = +q.get('year'); let bi = 0; DATA.years.forEach((v, i) => { if (Math.abs(v.y - y) < Math.abs(DATA.years[bi].y - y)) bi = i; }); S.yi = bi; }
+  pendingState = q.get('state');
+  if (mode && TITLES[mode] && (mode !== 'wars' || CFG.showWars)) { if (mode === S.mode) apply(); else setMode(mode); }
+  const iso = q.get('country');
+  if (iso) { const f = DATA.countries.features.find((x) => x.properties.iso === iso); if (f) { pick(f.properties); flyTo(f.properties.lx, f.properties.ly, f.properties.a); } }
+  if (q.has('lng') && q.has('lat')) map.jumpTo({ center: [+q.get('lng'), +q.get('lat')], zoom: q.has('z') ? +q.get('z') : map.getZoom() });
+}
+function pageLink(path, text) { return path ? `<p class="more"><a href="${path}" target="_blank" rel="noopener">${text} →</a></p>` : ''; }
 
 function setup() {
   const M = 85.0511287798;
@@ -450,6 +471,7 @@ function loadYear(y) {
     if (want !== y) return;
     histFeatures = d.features; hoverRef = null;
     map.getSource('hist').setData(d); renderTimeline(); if (S.mode === 'history') renderPanel(); buildLabels();
+    if (pendingState && S.mode === 'history') { const f = d.features.find((x) => x.properties.en === pendingState); pendingState = null; if (f) { pick(f.properties); flyTo(f.properties.x, f.properties.y, f.properties.a); } }
   };
   if (DATA.hist[y]) return done(DATA.hist[y]);
   getJSON(`data/hist/${y}.json`).then((d) => { DATA.hist[y] = d; done(d); }).catch(console.error);
@@ -459,6 +481,7 @@ function loadYear(y) {
 const TITLES = { today: 'Мир сегодня', history: 'История государств', wars: 'Войны и походы', resources: 'Ресурсы и отрасли', fields: 'Ветры и течения' };
 const SOURCES = `<details class="src"><summary>Источники данных</summary>
 <p>Современные границы, население и рельеф — Natural Earth. Исторические границы — проект historical-basemaps (А. Урджедник, GPL-3.0); до Нового времени они приблизительны. Население древних государств — оценки историков-демографов (Макэведи и Джонс, HYDE), точность невысокая. Ветер — анализ модели GFS на 31 января 2014 года, течения — OSCAR на ту же дату (образцы проекта earth.nullschool.net). Стрелки ударов и месторождения нанесены схематично.</p></details>
+<div class="links sections"><a href="strany/">Страны</a><a href="istoriya/">История государств</a><a href="resursy/">Ресурсы</a><a href="vetry-i-techeniya/">Ветры и течения</a></div>
 <div class="links"><a href="about.html" target="_blank" rel="noopener">Об атласе и источниках</a><a href="privacy.html" target="_blank" rel="noopener">Персональные данные</a></div>`;
 
 function renderPanel() {
@@ -468,11 +491,11 @@ function renderPanel() {
   body.insertAdjacentHTML('beforeend', SOURCES);
 }
 
-function countryCard(p) {
+function countryCard(p, full = false) {
   const dens = p.pop && p.a ? p.pop / p.a : 0;
   return `<div class="info"><h2>${esc(p.n)}</h2><p class="sub">${esc(p.cont || '')}${p.sov ? ' · владение: ' + esc(p.sov) : ''}</p>
   <dl class="facts"><dt>Площадь</dt><dd>${fmtArea(p.a)}</dd><dt>Население${p.py ? ' (' + p.py + ')' : ''}</dt><dd>${p.pop ? fmtPop(p.pop) : '—'}</dd>
-  ${dens ? `<dt>Плотность</dt><dd>${nf(dens, dens < 10 ? 1 : 0)} чел./км²</dd>` : ''}${p.gdp ? `<dt>ВВП</dt><dd>${p.gdp >= 1e6 ? nf(p.gdp / 1e6, 2) + ' трлн $' : nf(p.gdp / 1e3, p.gdp < 1e4 ? 1 : 0) + ' млрд $'}</dd>` : ''}</dl></div>`;
+  ${dens ? `<dt>Плотность</dt><dd>${nf(dens, dens < 10 ? 1 : 0)} чел./км²</dd>` : ''}${p.gdp ? `<dt>ВВП</dt><dd>${p.gdp >= 1e6 ? nf(p.gdp / 1e6, 2) + ' трлн $' : nf(p.gdp / 1e3, p.gdp < 1e4 ? 1 : 0) + ' млрд $'}</dd>` : ''}</dl>${full && DATA.pages ? pageLink(DATA.pages.countries[p.iso], 'Подробнее о стране') : ''}</div>`;
 }
 function panelToday(body) {
   const fs = DATA.countries.features;
@@ -484,21 +507,21 @@ function panelToday(body) {
   const box = el('div', { id: 'picked' }); body.append(box);
   const total = fs.reduce((a, f) => a + f.properties.pop, 0);
   const top = [...fs].sort((a, b) => b.properties.pop - a.properties.pop).slice(0, 8);
-  box.innerHTML = S.picked ? countryCard(S.picked) : '';
+  box.innerHTML = S.picked ? countryCard(S.picked, true) : '';
   body.append(el('p', { class: 'label' }, 'Крупнейшие по населению'));
   const ul = el('ul', { class: 'list' });
   top.forEach((f) => { const li = el('li'); const b = el('button', {}, `<span>${esc(f.properties.n)}</span><span class="num">${fmtPop(f.properties.pop)}</span>`);
     b.onclick = () => { pick(f.properties); flyTo(f.properties.lx, f.properties.ly, f.properties.a); }; li.append(b); ul.append(li); });
   body.append(ul, el('p', { class: 'hint' }, `Всего на карте ${fs.length} стран и территорий, ${fmtPop(total)} человек.`));
 }
-function pick(p) { S.picked = p; const box = $('#picked'); if (box) box.innerHTML = S.mode === 'today' ? countryCard(p) : histCard(p); }
+function pick(p) { S.picked = p; const box = $('#picked'); if (box) box.innerHTML = S.mode === 'today' ? countryCard(p, true) : histCard(p); }
 function flyTo(x, y, a) { if (x == null) return; const z = Math.max(2, Math.min(6.5, 7.2 - Math.log2(Math.sqrt(Math.max(a, 100)) / 100))); map.flyTo({ center: [x, y], zoom: z, duration: 1200 }); }
 
 function histCard(p, full = true) {
   const y = S.mode === 'wars' ? S.war.hist : DATA.years[S.yi].y, st = DATA.content.states[p.en];
   return `<div class="info"><h2>${esc(p.n)}</h2><p class="sub">${p.s ? 'Государство' : 'Народ или культура без государства'} · на карте ${fmtYear(y)}${p.n !== p.en ? ' · ' + esc(p.en) : ''}</p>
   <dl class="facts"><dt>Площадь</dt><dd>≈ ${fmtArea(p.a)}</dd><dt>Население</dt><dd>${p.pop != null ? '≈ ' + fmtMln(p.pop) : 'нет оценки'}</dd>${st ? `<dt>Существовало</dt><dd>${esc(st[0])}</dd>` : ''}</dl>
-  ${st && full ? `<dl class="facts stack"><dt>Столица</dt><dd>${esc(st[1])}</dd><dt>Правители</dt><dd>${esc(st[2])}</dd></dl><p class="about">${esc(st[3])}</p>` : st ? '<p class="sub" style="margin:6px 0 0">Щёлкните, чтобы открыть справку в панели</p>' : ''}</div>`;
+  ${st && full ? `<dl class="facts stack"><dt>Столица</dt><dd>${esc(st[1])}</dd><dt>Правители</dt><dd>${esc(st[2])}</dd></dl><p class="about">${esc(st[3])}</p>${DATA.pages ? pageLink(DATA.pages.states[p.en], 'Подробнее о государстве') : ''}` : st ? '<p class="sub" style="margin:6px 0 0">Щёлкните, чтобы открыть справку в панели</p>' : ''}</div>`;
 }
 function panelHistory(body) {
   const yr = DATA.years[S.yi];
@@ -639,7 +662,7 @@ function bindUI() {
     try {
       if (CFG.feedbackUrl) {
         const r = await fetch(CFG.feedbackUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ message: item.text, source: item.src, contact: item.contact, context: item.context, page: location.href }) });
+          body: JSON.stringify({ message: item.text, source: item.src, contact: item.contact, context: item.context, page: location.href, website: $('#fb-website').value }) });
         if (!r.ok) throw new Error('feedback ' + r.status);
         return done();
       }

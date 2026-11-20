@@ -1,0 +1,45 @@
+@font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url(fonts/golos-text-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url(fonts/golos-text-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url(fonts/golos-text-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url(fonts/golos-text-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-display: swap; src: url(fonts/playfair-display-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Playfair Display"; font-weight: 700; font-display: swap; src: url(fonts/playfair-display-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+/* Текстовые страницы: узкая колонка чтения, шапка-навигация по разделам атласа */
+:root { --bg: #f4f7f9; --card: #ffffff; --ink: #14263a; --muted: #5a6b7c; --line: #cdd7e0; --accent: #c2500f; --accent-ink: #ffffff; --soft: #e8eef3; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b131c; --card: #111b27; --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d; --accent: #f08a3c; --accent-ink: #1a1206; --soft: #1a2838; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #0b131c; --card: #111b27; --ink: #e7eef5; --muted: #93a4b6; --line: #2b3b4d; --accent: #f08a3c; --accent-ink: #1a1206; --soft: #1a2838; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 "Golos Text", "Segoe UI", system-ui, sans-serif; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top { background: var(--card); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; padding-block: 12px; }
+.brand { font: 700 20px/1.2 "Playfair Display", Georgia, serif; color: var(--ink); text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+nav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 15px; }
+nav a:hover { color: var(--accent); }
+main { padding-block: 20px 48px; }
+.crumbs { font-size: 13.5px; color: var(--muted); margin: 0 0 6px; }
+.crumbs a { color: var(--muted); }
+h1 { font: 700 32px/1.2 "Playfair Display", Georgia, serif; margin: 6px 0 10px; text-wrap: balance; }
+h2 { font-size: 20px; margin: 30px 0 10px; text-wrap: balance; }
+p { margin: 0 0 12px; max-width: 68ch; }
+a { color: var(--accent); }
+.lead { font-size: 18px; }
+.btn { display: inline-block; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; padding: 10px 16px; border-radius: 8px; margin: 6px 0 4px; }
+.facts { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 0; margin: 14px 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.facts dt, .facts dd { margin: 0; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+.facts dt { color: var(--muted); }
+.facts dd { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 0; }
+.facts dt:nth-last-of-type(1), .facts dd:last-child { border-bottom: 0; }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } .facts dt { border-bottom: 0; padding-bottom: 0; font-size: 13px; } }
+.cols { columns: 3 220px; column-gap: 28px; padding: 0; margin: 0 0 12px; list-style: none; }
+.cols li { break-inside: avoid; padding: 3px 0; }
+.cols .num { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+ul.plain { padding-left: 20px; } ul.plain li { margin-bottom: 6px; }
+.tbl { overflow-x: auto; margin: 10px 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 13.5px; }
+.note { color: var(--muted); font-size: 14px; }
+.foot { display: flex; flex-wrap: wrap; gap: 6px 20px; padding-block: 20px 40px; border-top: 1px solid var(--line); font-size: 14px; }
+.foot a { color: var(--muted); }

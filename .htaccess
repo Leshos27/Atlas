@@ -8,6 +8,7 @@ RedirectMatch 404 ^/README\.md$
 RedirectMatch 404 ^/atlas\.html$
 RedirectMatch 404 ^/earthatlas-upload\.zip$
 AddDefaultCharset utf-8
+ErrorDocument 404 /404.html
 AddType application/json .json
 AddType font/woff2 .woff2
 AddType image/svg+xml .svg

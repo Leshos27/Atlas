@@ -43,7 +43,7 @@ if 'countries' in STEPS:
         p = f['properties']
         f['id'] = i + 1
         f['properties'] = {
-            'n': p.get('NAME_RU') or p['NAME'], 'en': p['NAME'], 'a': p['a'], 'pop': int(p.get('POP_EST') or 0),
+            'n': SHORT.get(p.get('NAME_RU'), p.get('NAME_RU')) or p['NAME'], 'en': p['NAME'], 'a': p['a'], 'pop': int(p.get('POP_EST') or 0),
             'py': p.get('POP_YEAR'), 'gdp': p.get('GDP_MD'), 'cont': CONT.get(p.get('CONTINENT'), ''),
             'c': int(p.get('MAPCOLOR7') or 1), 'lx': p.get('LABEL_X'), 'ly': p.get('LABEL_Y'),
             'sov': RU.get(p.get('SOVEREIGNT'), '') if p.get('SOVEREIGNT') != p.get('ADMIN') else '',

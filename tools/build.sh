@@ -2,7 +2,8 @@
 # Собирает сайт для хостинга: index.html из atlas.html, robots.txt и sitemap.xml.
 # Адрес сайта задаётся переменной: SITE_URL=https://ваш-домен.ru sh tools/build.sh
 cd "$(dirname "$0")/.." || exit 1
-SITE_URL="${SITE_URL:-https://example.ru}"
+SITE_URL="${SITE_URL:-https://earthatlas.ru}"
+SITE_URL="$SITE_URL" python3 tools/pages.py || exit 1
 TITLE="Атлас мира — интерактивная карта: страны, история, ресурсы, ветры и течения"
 DESC="Интерактивная карта мира: площадь и население стран, государства прошлого с 4000 года до н. э., реки, озёра и города, месторождения ресурсов, ветры и океанские течения на карте и глобусе."
 {
@@ -33,12 +34,18 @@ cat <<EOF
 <style>body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
-<noscript><p style="padding:16px;font:16px/1.5 sans-serif">Атлас мира — интерактивная карта: страны, история государств, реки и города, ресурсы, ветры и течения. Для работы карты включите JavaScript. <a href="about.html">Об атласе и источниках данных</a>.</p></noscript>
+<noscript><p style="padding:16px;font:16px/1.5 sans-serif">Атлас мира — интерактивная карта: страны, история государств, реки и города, ресурсы, ветры и течения. Для работы карты включите JavaScript. Разделы: <a href="strany/">страны мира</a>, <a href="istoriya/">история государств</a>, <a href="resursy/">ресурсы</a>, <a href="vetry-i-techeniya/">ветры и течения</a>, <a href="about.html">об атласе и источниках данных</a>.</p></noscript>
 EOF
 grep -v '^<title>' atlas.html
 printf '\n</body>\n</html>\n'
 } > index.html
 printf 'User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' "$SITE_URL" > robots.txt
 D=$(date +%Y-%m-%d)
-printf '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<url><loc>%s/</loc><lastmod>%s</lastmod></url>\n<url><loc>%s/about.html</loc><lastmod>%s</lastmod></url>\n</urlset>\n' "$SITE_URL" "$D" "$SITE_URL" "$D" > sitemap.xml
+{
+printf '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+printf '<url><loc>%s/</loc><lastmod>%s</lastmod></url>\n' "$SITE_URL" "$D"
+printf '<url><loc>%s/about.html</loc><lastmod>%s</lastmod></url>\n' "$SITE_URL" "$D"
+[ -f tools/pages.txt ] && while read -r P; do [ -n "$P" ] && printf '<url><loc>%s/%s</loc><lastmod>%s</lastmod></url>\n' "$SITE_URL" "$P" "$D"; done < tools/pages.txt
+printf '</urlset>\n'
+} > sitemap.xml
 echo "Собрано для $SITE_URL"
