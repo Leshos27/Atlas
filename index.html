@@ -311,7 +311,7 @@ let DATA = { water: null, cities: null, countries: null, years: [], content: nul
 let histFeatures = [], labels = [], playing = null, hoverRef = null;
 
 const map = new maplibregl.Map({
-  container: 'map', attributionControl: false, renderWorldCopies: false, dragRotate: false, pitchWithRotate: false,
+  container: 'map', attributionControl: false, renderWorldCopies: true, dragRotate: false, pitchWithRotate: false,
   center: [25, 28], zoom: 1.5, minZoom: 0.4, maxZoom: 8,
   style: { version: 8, projection: { type: 'mercator' }, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': BASES.relief.ocean } }] },
 });
@@ -799,14 +799,16 @@ function drawLabels() {
   if (!labels.length) return;
   const z = map.getZoom(), boxes = [], pxKm = 512 * Math.pow(2, z) / 40075;
   c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineJoin = 'round';
-  let drawn = 0;
+  let drawn = 0; const cLng = map.getCenter().lng;
   for (const l of labels) {
     if (drawn > 230) break;
     if (l.minZ && z < l.minZ) continue;
     let size = l.size || 11.5;
     if (l.a != null) { const px = Math.sqrt(l.a) * pxKm / Math.cos(Math.min(70, Math.abs(l.y)) * D2R); if (px < l.minPx) continue; size = l.fix || (px > 260 ? 15 : px > 120 ? 13 : 11.5); }
     if (!visible(l.x, l.y)) continue;
-    const p = map.project([l.x, l.y]); const y0 = p.y + (l.dy || 0);
+    const base = S.proj === 'globe' ? l.x : l.x + 360 * Math.round((cLng - l.x) / 360);
+    for (const lng of S.proj === 'globe' ? [base] : [base - 360, base, base + 360]) {
+    const p = map.project([lng, l.y]); const y0 = p.y + (l.dy || 0);
     if (p.x < -40 || p.x > VW + 40 || y0 < -20 || y0 > VH + 20) continue;
     const lines = wrap(l.t, l.max || 15);
     c.font = `${l.it ? 'italic ' : ''}${l.w} ${size}px "Golos Text", "Segoe UI", system-ui, sans-serif`;
@@ -818,6 +820,7 @@ function drawLabels() {
       lines.forEach((s, i) => c.fillText(s, p.x, y0 + (i - (lines.length - 1) / 2) * (size + 2))); continue; }
     c.lineWidth = 3.2; c.strokeStyle = l.halo; c.fillStyle = l.ink;
     lines.forEach((s, i) => { const yy = y0 + (i - (lines.length - 1) / 2) * (size + 2); c.strokeText(s, p.x, yy); c.fillText(s, p.x, yy); });
+    }
   }
 }
 
@@ -845,7 +848,7 @@ function spawn(p) {
     const la2 = Math.asin(Math.sin(la) * Math.cos(d) + Math.cos(la) * Math.sin(d) * Math.cos(th));
     p.x = (lo + Math.atan2(Math.sin(th) * Math.sin(d) * Math.cos(la), Math.cos(d) - Math.sin(la) * Math.sin(la2))) / D2R; p.y = la2 / D2R;
   } else {
-    const b = map.getBounds(), w = Math.max(-180, b.getWest()), e = Math.min(180, b.getEast()), s = Math.max(-84, b.getSouth()), n = Math.min(84, b.getNorth());
+    const b = map.getBounds(), cl = map.getCenter().lng, w = Math.max(cl - 540, b.getWest()), e = Math.min(cl + 540, b.getEast()), s = Math.max(-84, b.getSouth()), n = Math.min(84, b.getNorth());
     p.x = w + Math.random() * (e - w); p.y = s + Math.random() * (n - s);
   }
   p.age = Math.floor(Math.random() * 80); p.sx = NaN; p.sy = NaN;
@@ -869,7 +872,7 @@ function fxTick() {
     if (p.age++ > 170 || !sample(F, p.x, p.y, uv)) { spawn(p); continue; }
     const sp = Math.hypot(uv[0], uv[1]);
     p.x += uv[0] * step / Math.max(0.2, Math.cos(p.y * D2R)); p.y += uv[1] * step;
-    if (p.x > 180) p.x -= 360; else if (p.x < -180) p.x += 360;
+    if (S.proj === 'globe') { if (p.x > 180) p.x -= 360; else if (p.x < -180) p.x += 360; }
     if (p.y > 86 || p.y < -86 || !visible(p.x, p.y)) { spawn(p); continue; }
     const q = map.project([p.x, p.y]);
     if (q.x < -20 || q.x > VW + 20 || q.y < -20 || q.y > VH + 20) { spawn(p); continue; }
