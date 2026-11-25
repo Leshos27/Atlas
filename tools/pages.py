@@ -76,6 +76,8 @@ def write(path, title, desc, crumbs, body, kind='article'):
 {body}
 </main>
 <footer class="wrap foot"><a href="{up}">Открыть карту</a><a href="{up}about.html">Об атласе и источниках</a><a href="{up}privacy.html">Персональные данные</a></footer>
+<script src="{up}config.js"></script>
+<script src="{up}services.js" defer></script>
 </body>
 </html>
 '''

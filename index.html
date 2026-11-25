@@ -680,7 +680,7 @@ function bindUI() {
     if (CFG.metrikaId) {
       window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); }; window.ym.l = Date.now();
       const sc = document.createElement('script'); sc.async = true; sc.src = 'https://mc.yandex.ru/metrika/tag.js'; document.head.append(sc);
-      window.ym(Number(CFG.metrikaId), 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+      window.ym(Number(CFG.metrikaId), 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
     }
     if (CFG.adBlockId) {
       $('#ad-slot').id = 'yandex_rtb_' + CFG.adBlockId; $('#ad-bar').hidden = false;
