@@ -1,0 +1,19 @@
+# Ручной запуск: GitHub → вкладка Actions → «IndexNow» → Run workflow.
+# Отправляет Яндексу и Bing все адреса из sitemap.xml (или только перечисленные).
+# Запускайте, когда изменения уже на хостинге (хостинг забирает main раз в час).
+name: IndexNow
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: 'Пути через пробел, например strany/indiya/ istoriya/ (пусто — весь sitemap)'
+        required: false
+        default: ''
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          PATHS: ${{ inputs.paths }}
+        run: python3 tools/indexnow.py $PATHS
