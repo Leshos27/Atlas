@@ -219,7 +219,7 @@ for i, f in enumerate(countries):
     if dens:
         facts.append(('Плотность населения', f'{nf(dens, 1 if dens < 10 else 0)} чел./км²'))
     if p.get('gdp'):
-        g = p['gdp']; facts.append(('ВВП', f'{nf(g / 1e6, 2)} трлн долл.' if g >= 1e6 else f'{nf(g / 1e3, 1 if g < 1e4 else 0)} млрд долл.'))
+        g = p['gdp']; facts.append((f'ВВП ({p["gy"]})' if p.get('gy') else 'ВВП', f'{nf(g / 1e6, 2)} трлн долл.' if g >= 1e6 else f'{nf(g / 1e3, 1 if g < 1e4 else 0)} млрд долл.'))
         if p['pop']:
             facts.append(('ВВП на душу населения', f'≈ {nf(g * 1e6 / p["pop"] / 1000, 1)} тыс. долл.' if g * 1e6 / p['pop'] >= 1000 else f'≈ {nf(g * 1e6 / p["pop"])} долл.'))
     if p['cont']:
@@ -252,7 +252,7 @@ for i, f in enumerate(countries):
             nm = re.sub(r', ' + re.escape(p['n']) + r'(?= —|$)', '', s_[2])
             body += f'<li><a href="{up}resursy/{slug(r["n"])}/">{E(r["n"])}</a>: {E(nm)}</li>'
         body += '</ul>'
-    body += '<p class="note">Площадь посчитана по контуру страны на карте атласа и может немного отличаться от официальной. Население — оценка Natural Earth.</p>'
+    body += '<p class="note">Площадь посчитана по контуру страны на карте атласа и может немного отличаться от официальной. Население и ВВП — оценки Всемирного банка и справочника ЦРУ World Factbook на указанный год.</p>'
     title = f'{p["n"]}: площадь, население, столица, карта — Атлас мира'
     desc = f'{p["n"]} на интерактивной карте: площадь ≈ {area(p["a"])}' + (f', население {people(p["pop"])}' if p['pop'] else '') + (f', столица — {caps[0]["n"]}' if caps else '') + '. Соседи, крупные города, реки и ресурсы.'
     write(f'strany/{s}/', title, desc, [('strany/', 'Страны'), (None, p['n'])], body)
