@@ -570,6 +570,10 @@ def parse(t):
             d[k.strip()] = v.strip()
     return d
 STATES, PEOPLES = parse(S), parse(P)
+# Переводы названий, которые раньше оставались на английском (tools/names_extra.py)
+from names_extra import XS, XP
+for _k, _v in parse(XS).items(): STATES.setdefault(_k, _v)
+for _k, _v in parse(XP).items(): PEOPLES.setdefault(_k, _v)
 
 # Оценки населения, млн чел. (название в наборе -> {год: значение}). Приблизительные исторические оценки.
 POP = {

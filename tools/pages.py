@@ -270,12 +270,14 @@ write('strany/', 'Страны мира: площадь, население и �
 
 # ---------- исторические государства ----------
 hist = {}
+histn = {}  # русское название, под которым государство показано на карте
 for f in glob.glob('data/hist/*.json'):
     y = int(os.path.basename(f)[:-5])
     for x in json.load(open(f))['features']:
         q = x['properties']
         if q['s']:
             hist.setdefault(q['en'], []).append((y, q['a'], q['x'], q['y'], q.get('pop')))
+            histn[q['en']] = q['n']
 cards = collections.OrderedDict()
 for en, card in content['states'].items():
     cards.setdefault(tuple(card), []).append(en)
@@ -291,7 +293,7 @@ for card, ens in cards.items():
     best = max(occ, key=lambda t: t[1])
     years_, cap, rulers, about = card
     up = '../../'
-    rows = ''.join(f'<tr><td>{E(year(y))}</td><td>{E(STATES.get(en, en))}</td><td>≈ {area(a)}</td><td>{("≈ " + mln(pop)) if pop is not None else "—"}</td></tr>' for y, a, x, yy, pop, en in occ)
+    rows = ''.join(f'<tr><td>{E(year(y))}</td><td>{E(histn.get(en) or STATES.get(en, en))}</td><td>≈ {area(a)}</td><td>{("≈ " + mln(pop)) if pop is not None else "—"}</td></tr>' for y, a, x, yy, pop, en in occ)
     facts = [('Годы существования', years_), ('Столица', cap), ('Известные правители', rulers), ('Наибольшая площадь на карте атласа', f'≈ {area(best[1])} ({year(best[0])})')]
     body = (f'<h1>{E(ru)}</h1><p class="lead">{E(about)}</p>'
             + maplink(up, {'mode': 'history', 'year': best[0], 'state': best[5].replace(' ', '%20')}, f'Показать на карте ({year(best[0])})')
