@@ -480,7 +480,7 @@ function loadYear(y) {
 /* ---------- панель ---------- */
 const TITLES = { today: 'Мир сегодня', history: 'История государств', wars: 'Войны и походы', resources: 'Ресурсы и отрасли', fields: 'Ветры и течения' };
 const SOURCES = `<details class="src"><summary>Источники данных</summary>
-<p>Современные границы, население и рельеф — Natural Earth. Исторические границы — проект historical-basemaps (А. Урджедник, GPL-3.0); до Нового времени они приблизительны. Население древних государств — оценки историков-демографов (Макэведи и Джонс, HYDE), точность невысокая. Ветер — анализ модели GFS на 31 января 2014 года, течения — OSCAR на ту же дату (образцы проекта earth.nullschool.net). Стрелки ударов и месторождения нанесены схематично.</p></details>
+<p>Современные границы и рельеф — Natural Earth; население и ВВП — Всемирный банк и справочник ЦРУ World Factbook (2024–2025). Исторические границы — проект historical-basemaps (А. Урджедник, GPL-3.0); до Нового времени они приблизительны. Население древних государств — оценки историков-демографов (Макэведи и Джонс, HYDE), точность невысокая. Ветер — анализ модели GFS на 31 января 2014 года, течения — OSCAR на ту же дату (образцы проекта earth.nullschool.net). Стрелки ударов и месторождения нанесены схематично.</p></details>
 <div class="links sections"><a href="strany/">Страны</a><a href="istoriya/">История государств</a><a href="resursy/">Ресурсы</a><a href="vetry-i-techeniya/">Ветры и течения</a></div>
 <div class="links"><a href="about.html" target="_blank" rel="noopener">Об атласе и источниках</a><a href="privacy.html" target="_blank" rel="noopener">Персональные данные</a></div>`;
 
@@ -495,7 +495,7 @@ function countryCard(p, full = false) {
   const dens = p.pop && p.a ? p.pop / p.a : 0;
   return `<div class="info"><h2>${esc(p.n)}</h2><p class="sub">${esc(p.cont || '')}${p.sov ? ' · владение: ' + esc(p.sov) : ''}</p>
   <dl class="facts"><dt>Площадь</dt><dd>${fmtArea(p.a)}</dd><dt>Население${p.py ? ' (' + p.py + ')' : ''}</dt><dd>${p.pop ? fmtPop(p.pop) : '—'}</dd>
-  ${dens ? `<dt>Плотность</dt><dd>${nf(dens, dens < 10 ? 1 : 0)} чел./км²</dd>` : ''}${p.gdp ? `<dt>ВВП</dt><dd>${p.gdp >= 1e6 ? nf(p.gdp / 1e6, 2) + ' трлн $' : nf(p.gdp / 1e3, p.gdp < 1e4 ? 1 : 0) + ' млрд $'}</dd>` : ''}</dl>${full && DATA.pages ? pageLink(DATA.pages.countries[p.iso], 'Подробнее о стране') : ''}</div>`;
+  ${dens ? `<dt>Плотность</dt><dd>${nf(dens, dens < 10 ? 1 : 0)} чел./км²</dd>` : ''}${p.gdp ? `<dt>ВВП${p.gy ? ' (' + p.gy + ')' : ''}</dt><dd>${p.gdp >= 1e6 ? nf(p.gdp / 1e6, 2) + ' трлн $' : nf(p.gdp / 1e3, p.gdp < 1e4 ? 1 : 0) + ' млрд $'}</dd>` : ''}</dl>${full && DATA.pages ? pageLink(DATA.pages.countries[p.iso], 'Подробнее о стране') : ''}</div>`;
 }
 function panelToday(body) {
   const fs = DATA.countries.features;

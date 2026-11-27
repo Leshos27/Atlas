@@ -219,7 +219,7 @@ for i, f in enumerate(countries):
     if dens:
         facts.append(('Плотность населения', f'{nf(dens, 1 if dens < 10 else 0)} чел./км²'))
     if p.get('gdp'):
-        g = p['gdp']; facts.append(('ВВП', f'{nf(g / 1e6, 2)} трлн долл.' if g >= 1e6 else f'{nf(g / 1e3, 1 if g < 1e4 else 0)} млрд долл.'))
+        g = p['gdp']; facts.append((f'ВВП ({p["gy"]})' if p.get('gy') else 'ВВП', f'{nf(g / 1e6, 2)} трлн долл.' if g >= 1e6 else f'{nf(g / 1e3, 1 if g < 1e4 else 0)} млрд долл.'))
         if p['pop']:
             facts.append(('ВВП на душу населения', f'≈ {nf(g * 1e6 / p["pop"] / 1000, 1)} тыс. долл.' if g * 1e6 / p['pop'] >= 1000 else f'≈ {nf(g * 1e6 / p["pop"])} долл.'))
     if p['cont']:
@@ -252,7 +252,7 @@ for i, f in enumerate(countries):
             nm = re.sub(r', ' + re.escape(p['n']) + r'(?= —|$)', '', s_[2])
             body += f'<li><a href="{up}resursy/{slug(r["n"])}/">{E(r["n"])}</a>: {E(nm)}</li>'
         body += '</ul>'
-    body += '<p class="note">Площадь посчитана по контуру страны на карте атласа и может немного отличаться от официальной. Население — оценка Natural Earth.</p>'
+    body += '<p class="note">Площадь посчитана по контуру страны на карте атласа и может немного отличаться от официальной. Население и ВВП — оценки Всемирного банка и справочника ЦРУ World Factbook на указанный год.</p>'
     title = f'{p["n"]}: площадь, население, столица, карта — Атлас мира'
     desc = f'{p["n"]} на интерактивной карте: площадь ≈ {area(p["a"])}' + (f', население {people(p["pop"])}' if p['pop'] else '') + (f', столица — {caps[0]["n"]}' if caps else '') + '. Соседи, крупные города, реки и ресурсы.'
     write(f'strany/{s}/', title, desc, [('strany/', 'Страны'), (None, p['n'])], body)
@@ -270,12 +270,14 @@ write('strany/', 'Страны мира: площадь, население и �
 
 # ---------- исторические государства ----------
 hist = {}
+histn = {}  # русское название, под которым государство показано на карте
 for f in glob.glob('data/hist/*.json'):
     y = int(os.path.basename(f)[:-5])
     for x in json.load(open(f))['features']:
         q = x['properties']
         if q['s']:
             hist.setdefault(q['en'], []).append((y, q['a'], q['x'], q['y'], q.get('pop')))
+            histn[q['en']] = q['n']
 cards = collections.OrderedDict()
 for en, card in content['states'].items():
     cards.setdefault(tuple(card), []).append(en)
@@ -291,7 +293,7 @@ for card, ens in cards.items():
     best = max(occ, key=lambda t: t[1])
     years_, cap, rulers, about = card
     up = '../../'
-    rows = ''.join(f'<tr><td>{E(year(y))}</td><td>{E(STATES.get(en, en))}</td><td>≈ {area(a)}</td><td>{("≈ " + mln(pop)) if pop is not None else "—"}</td></tr>' for y, a, x, yy, pop, en in occ)
+    rows = ''.join(f'<tr><td>{E(year(y))}</td><td>{E(histn.get(en) or STATES.get(en, en))}</td><td>≈ {area(a)}</td><td>{("≈ " + mln(pop)) if pop is not None else "—"}</td></tr>' for y, a, x, yy, pop, en in occ)
     facts = [('Годы существования', years_), ('Столица', cap), ('Известные правители', rulers), ('Наибольшая площадь на карте атласа', f'≈ {area(best[1])} ({year(best[0])})')]
     body = (f'<h1>{E(ru)}</h1><p class="lead">{E(about)}</p>'
             + maplink(up, {'mode': 'history', 'year': best[0], 'state': best[5].replace(' ', '%20')}, f'Показать на карте ({year(best[0])})')
